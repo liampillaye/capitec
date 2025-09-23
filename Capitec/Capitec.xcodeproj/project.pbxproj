@@ -14,24 +14,29 @@
 			remoteGlobalIDString = 65CACEA92E83070900DCCA9D;
 			remoteInfo = Capitec;
 		};
-		65CACEC22E83070B00DCCA9D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65CACEA22E83070900DCCA9D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65CACEA92E83070900DCCA9D;
-			remoteInfo = Capitec;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		65CACEAA2E83070900DCCA9D /* Capitec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capitec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CACEB72E83070B00DCCA9D /* CapitecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65CACEC12E83070B00DCCA9D /* CapitecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		65BE5CB42E83113800A9A638 /* Exceptions for "Capitec" folder in "CapitecTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Presentation/LaunchScreen/Launch Screen.storyboard",
+			);
+			target = 65CACEB62E83070B00DCCA9D /* CapitecTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		65CACEAC2E83070900DCCA9D /* Capitec */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				65BE5CB42E83113800A9A638 /* Exceptions for "Capitec" folder in "CapitecTests" target */,
+			);
 			path = Capitec;
 			sourceTree = "<group>";
 		};
@@ -57,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65CACEBE2E83070B00DCCA9D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +79,6 @@
 			children = (
 				65CACEAA2E83070900DCCA9D /* Capitec.app */,
 				65CACEB72E83070B00DCCA9D /* CapitecTests.xctest */,
-				65CACEC12E83070B00DCCA9D /* CapitecUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,26 +131,6 @@
 			productReference = 65CACEB72E83070B00DCCA9D /* CapitecTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		65CACEC02E83070B00DCCA9D /* CapitecUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 65CACED12E83070B00DCCA9D /* Build configuration list for PBXNativeTarget "CapitecUITests" */;
-			buildPhases = (
-				65CACEBD2E83070B00DCCA9D /* Sources */,
-				65CACEBE2E83070B00DCCA9D /* Frameworks */,
-				65CACEBF2E83070B00DCCA9D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				65CACEC32E83070B00DCCA9D /* PBXTargetDependency */,
-			);
-			name = CapitecUITests;
-			packageProductDependencies = (
-			);
-			productName = CapitecUITests;
-			productReference = 65CACEC12E83070B00DCCA9D /* CapitecUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,10 +145,6 @@
 						CreatedOnToolsVersion = 16.4;
 					};
 					65CACEB62E83070B00DCCA9D = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 65CACEA92E83070900DCCA9D;
-					};
-					65CACEC02E83070B00DCCA9D = {
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 65CACEA92E83070900DCCA9D;
 					};
@@ -193,7 +166,6 @@
 			targets = (
 				65CACEA92E83070900DCCA9D /* Capitec */,
 				65CACEB62E83070B00DCCA9D /* CapitecTests */,
-				65CACEC02E83070B00DCCA9D /* CapitecUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,13 +179,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		65CACEB52E83070B00DCCA9D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		65CACEBF2E83070B00DCCA9D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,13 +202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65CACEBD2E83070B00DCCA9D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -251,11 +209,6 @@
 			isa = PBXTargetDependency;
 			target = 65CACEA92E83070900DCCA9D /* Capitec */;
 			targetProxy = 65CACEB82E83070B00DCCA9D /* PBXContainerItemProxy */;
-		};
-		65CACEC32E83070B00DCCA9D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65CACEA92E83070900DCCA9D /* Capitec */;
-			targetProxy = 65CACEC22E83070B00DCCA9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -386,13 +339,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q5A3BYCM26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Capitec;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,9 +357,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = za.co.capitecbank.Capitec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -413,13 +374,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q5A3BYCM26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Capitec;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -427,9 +392,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = za.co.capitecbank.Capitec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -469,38 +438,6 @@
 			};
 			name = Release;
 		};
-		65CACED22E83070B00DCCA9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = za.co.capitecbank.CapitecUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Capitec;
-			};
-			name = Debug;
-		};
-		65CACED32E83070B00DCCA9D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = za.co.capitecbank.CapitecUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Capitec;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -527,15 +464,6 @@
 			buildConfigurations = (
 				65CACECF2E83070B00DCCA9D /* Debug */,
 				65CACED02E83070B00DCCA9D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		65CACED12E83070B00DCCA9D /* Build configuration list for PBXNativeTarget "CapitecUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65CACED22E83070B00DCCA9D /* Debug */,
-				65CACED32E83070B00DCCA9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
