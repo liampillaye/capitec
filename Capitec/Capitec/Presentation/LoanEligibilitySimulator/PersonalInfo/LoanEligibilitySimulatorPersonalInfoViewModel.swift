@@ -6,69 +6,49 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorPersonalInfoViewModel: ObservableObject {
-    
-    
         
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
-//    private let userRepository: UserRepository
-//    private let profileManager: ProfileManager
-//    private var user: User?
     
     @Published private(set) var isBusy: Bool = false
-    @Published var saveFailed: Bool = false
-    
+    private var cancellables = Set<AnyCancellable>()
     
     //MARK: - Form Fields -
-    @Published var age: FormField = FormField(for: "Age")
-    @Published var employmentStatus: FormField = FormField(for: "Employment Status")
-    @Published var employmentDuration: FormField = FormField(for: "Emmployment Duration")
-
+    @Published var age: FormField = FormField(for: "age")
+    @Published var employmentStatus: FormField = FormField(for: "employmentStatus")
+    @Published var employmentDuration: FormField = FormField(for: "employmentDuration")
+    @Published var shouldForceUpdate: Bool = false
     
     //MARK: - Inits -
-    
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
 
-        formValidator.addFields(fields: [
-            self.age,
-            self.employmentStatus,
-            self.employmentDuration
-        ])
-    }
-//    init(userRepository: UserRepository = resolve(UserRepository.self)!,
-//         profileManager: ProfileManager = resolve(ProfileManager.self)!) {
-//        self.userRepository = userRepository
-//        self.profileManager = profileManager
-//        
-//        initialiseUser()
-//        
-//        formValidator.addFields(fields: [
-//            self.name,
-//            self.surname,
-//            self.mobile,
-//            self.idNumber,
-//            self.email,
-//            self.complexBuilding,
-//            self.street,
-//            self.suburb,
-//            self.town,
-//            self.postalCode,
-//            self.provinceState,
-//            self.passphrase,
-//            self.confirmpassphrase
-//        ])
+        formValidator.addFields(fields: [self.age, self.employmentStatus, self.employmentDuration])
         
-//        formValidator.validate()
-    
+        formValidator.$forceUpdate
+            .sink { forceUpdate in
+                self.shouldForceUpdate = forceUpdate
+            }
+            .store(in: &cancellables)
+    }
     
     func validate() -> Bool {
-        return formValidator.validate();
+        
+        do {
+            let personalInfoValidationRules = try self.manager.fetchPersonalInfoValidationRules()
+            formValidator.addRule(for: "age", rule: personalInfoValidationRules.age)
+//            formValidator.addRule(for: "employmentStatus", rule: personalInfoValidationRules.employmentStatus)
+            formValidator.addRule(for: "employmentDuration", rule: personalInfoValidationRules.employmentDuration)
+            return formValidator.validate()
+        } catch {
+            return false //Handle error
+        }
     }
     
-    func fetchValidationRules() async throws {
-        try await self.manager.fetchAndSaveValidationRules()
+    func fetchValidationRules() throws {
+        try self.manager.fetchAndSaveValidationRules()
     }
 }

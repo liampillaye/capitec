@@ -8,20 +8,20 @@
 import Foundation
 
 final class MockLoanEligibilitySimulatorService: LoanEligibilitySimulatorService {
-    func eligiblity() async throws -> EligibilityResponse {
+    func eligiblity() throws -> EligibilityResponse {
         throw HttpClientError.notImplemented
     }
     
-    func getProducts() async throws -> [Product] {
+    func getProducts() throws -> [Product] {
         throw HttpClientError.notImplemented
     }
     
-    func calculateRate() async throws -> CalculateRateResponse {
+    func calculateRate() throws -> CalculateRateResponse {
         throw HttpClientError.notImplemented
 
     }
     
-    func getValidationRules() async throws -> ValidationRulesResponse {
+    func getValidationRules() throws -> ValidationRulesResponse {
         let bundle = Bundle(for: type(of: self))
         let validationRulesResponse: ValidationRulesResponse = bundle.decode(Constants.Mocks.Loans.valdiationRules)
         return validationRulesResponse

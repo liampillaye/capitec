@@ -22,7 +22,7 @@ struct PrimaryButton: View {
               .modifier(ButtonModifier())
         }
         .disabled(isDisabled)
-        .background(Capsule().fill(isDisabled ? .gray : Color("PrimaryColor")))
+        .background(Capsule().fill(isDisabled ? .gray : Color(Constants.Colors.primaryThemeColor)))
         .padding(20)
     }
 }

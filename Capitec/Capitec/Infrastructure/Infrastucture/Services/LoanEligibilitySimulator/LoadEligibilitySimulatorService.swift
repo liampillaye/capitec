@@ -8,8 +8,8 @@
 import Foundation
 
 protocol LoanEligibilitySimulatorService {
-    func eligiblity() async throws -> EligibilityResponse
-    func getProducts() async throws -> [Product]
-    func calculateRate() async throws -> CalculateRateResponse
-    func getValidationRules() async throws -> ValidationRulesResponse
+    func eligiblity() throws -> EligibilityResponse
+    func getProducts() throws -> [Product]
+    func calculateRate() throws -> CalculateRateResponse
+    func getValidationRules() throws -> ValidationRulesResponse
 }

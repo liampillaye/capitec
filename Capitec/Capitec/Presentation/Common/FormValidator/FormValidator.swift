@@ -7,28 +7,33 @@
 
 import Foundation
 
-@MainActor internal final class FormValidator {
+@MainActor internal final class FormValidator: ObservableObject {
     private var formFields: [FormField] = []
-
+    
+    @Published var forceUpdate: Bool = false
+    
     func addFields(fields: [FormField]) {
         self.formFields = fields
+    }
+    
+    func addRule(for fieldName: String, rule: ValidationRule) {
+        if let index = formFields.firstIndex(where: { $0.fieldName == fieldName }) {
+            formFields[index].rule = rule
+        }
     }
     
     @discardableResult func validate() -> Bool {
         var isValid = true
         
         formFields.forEach { field in
-            if field.value.isEmpty {
-                field.error = "\(field.fieldName) field is required"
+            
+            if let rule = field.rule, rule.required{
+                field.error = rule.errorMessage
+                forceUpdate = true
                 isValid = false
             }
-            
-//            if let regex = field.regex, !regex.matches(in:)(field.value) {
-//                field.error = "\(field.fieldName) invalid"
-//                isValid = false
-//            }
         }
-        
+    
         return isValid
     }
 }

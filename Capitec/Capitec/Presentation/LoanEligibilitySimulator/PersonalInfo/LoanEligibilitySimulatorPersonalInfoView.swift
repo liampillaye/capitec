@@ -11,21 +11,18 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     
     //MARK: PROPERTIES
     @ObservedObject var viewModel: LoanEligibilitySimulatorPersonalInfoViewModel
-    
+        
     @State private var age: String = ""
     @State private var employmentStatus: String = ""
     @State private var employmentDuration: String = ""
     @State private var showFinancialInfoView: Bool = false
-    
-    //MARK: PRIVATE FUNCTIONS
-    @discardableResult private func estimateAction() -> Bool {
-        return viewModel.validate()
-    }
-    
+        
     //MARK: BODY
     var body: some View {
         NavigationStack {
+            ScrollView {
                 VStack {
+                    //Navigation Bar
                     NavigationBarView(
                         title1: Constants.NavigationBar.LoanElilitySimulator.title,
                         title2: Constants.NavigationBar.LoanElilitySimulator.personalInfoTitle,
@@ -33,35 +30,47 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                         showStepper: true).padding(.bottom)
                     
                     
-                    //Income
-                    TextInputView(title: "Age",
-                                  placeholder: "What is your age?",
-                                  text: $age,
-                                  error: $viewModel.age.error,
-                                  keyboardType: .numberPad)
-                    
-                    //Expenses
-                    TextInputView(title: "Employment Status",
-                                  placeholder: "What is your employment status?",
-                                  text: $employmentStatus,
-                                  error: $viewModel.employmentStatus.error,
-                                  keyboardType: .numberPad)
-                    
-                    //LoanAmount
-                    TextInputView(title: "Employment Duration",
-                                  placeholder: "How long have you been employed?",
-                                  text: $employmentDuration,
-                                  error: $viewModel.employmentDuration.error,
-                                  keyboardType: .numberPad)
-                    
-                    Spacer()
+                    Group {
+                        //Requested Amount
+                        TextInputView(title: "Age",
+                                      placeholder: "What is your age?",
+                                      text: $age,
+                                      error: $viewModel.age.error,
+                                      keyboardType: .numberPad)
+                        
+                        //Loan Term
+                        TextInputView(title: "Employment Status",
+                                      placeholder: "What is your employment status?",
+                                      text: $employmentStatus,
+                                      error: $viewModel.employmentStatus.error,
+                                      keyboardType: .numberPad)
+                        
+                        //Loan Purpose
+                        TextInputView(title: "Employment Duration",
+                                      placeholder: "What is your employment duration?",
+                                      text: $employmentDuration,
+                                      error: $viewModel.employmentDuration.error,
+                                      keyboardType: .numberPad)
+                        
+                    }//:GROUP
                     
                     PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
+                        if viewModel.validate() {
+                            print("validation passed, no errors continue")
+                        } else {
+                            print("valdation failed.")
+                        }
                     }
                 }//: VSTACK
                 .navigationDestination(isPresented: $showFinancialInfoView) {
                     //                OnboardingClientView()
                 }
+                .onAppear() {
+                    Task {
+                        try viewModel.fetchValidationRules()
+                    }
+                }
+            }//:SCROLLVIEW
         }//: NAVIGATION STACK
         .navigationBarBackButtonHidden()
         .navigationBarHidden(true)
@@ -77,6 +86,14 @@ struct LoanEligibilitySimulatorPersonalInfoView_Previews: PreviewProvider {
 
 // MARK: - Mock Manager for Previews
 final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
+    func fetchAndSaveValidationRules() throws {
+        //TODO
+    }
+    
+    func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
+        ValidationRulePersonalInfo(age: ValidationRule(min: 0, max: nil, required: true, errorMessage: "Hello"), employmentStatus: ValidationRuleEmploymentStatus(employmentStatusRequired: true, options: ["test"], errorMessage: "test"), employmentDuration: ValidationRule(min: 0, max: nil, required: false, errorMessage: "Hello"))
+    }
+    
     func fetchAndSaveValidationRules() async throws {
         //TODO
     }

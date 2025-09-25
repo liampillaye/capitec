@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoanEligibilitySimulatorLoanDetailsView: View {
     
+    
     //MARK: PROPERTIES
     @State private var requestedAmount: String = ""
     @State private var loanTerm: String = ""

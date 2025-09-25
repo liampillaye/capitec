@@ -11,12 +11,15 @@ import Foundation
     var fieldName: String
     @Published var value: String
     @Published var error: String?
+    var rule: ValidationRule?
     
     init(for fieldName: String,
          value: String = "",
-         error: String? = nil) {
+         error: String? = nil,
+         rule: ValidationRule? = nil) {
         self.fieldName = fieldName
         self.value = value
         self.error = error
+        self.rule = rule
     }
 }

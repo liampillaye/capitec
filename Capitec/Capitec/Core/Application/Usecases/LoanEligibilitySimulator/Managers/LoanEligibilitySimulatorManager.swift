@@ -8,7 +8,8 @@
 import Foundation
 
 protocol LoanEligibilitySimulatorManager {
-    func fetchAndSaveValidationRules() async throws
+    func fetchAndSaveValidationRules() throws
+    func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo
 }
 
 final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
@@ -24,10 +25,10 @@ final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorMana
     }
     
     //MARK: PUBLIC METHODS
-    func fetchAndSaveValidationRules() async throws {
+    func fetchAndSaveValidationRules() throws {
         
         do {
-            let validationRulesResponse = try await service.getValidationRules()
+            let validationRulesResponse = try service.getValidationRules()
             
             let validationRulePersonalInfo = ValidationRulePersonalInfo(age: validationRulesResponse.personalInfo.age,
                                                                         employmentStatus: validationRulesResponse.personalInfo.employmentStatus,
@@ -49,5 +50,9 @@ final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorMana
         } catch {
             throw error //Handle Custom error here
         }
+    }
+    
+    func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
+        try validationRepository.findPersonalInfoValidationRules()
     }
 }
