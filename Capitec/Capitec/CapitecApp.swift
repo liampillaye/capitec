@@ -9,15 +9,16 @@ import SwiftUI
 
 @main
 struct CapitecApp: App {
+    
+    init() {
+        IoCContainer.registerDependencies()
+    }
+    
     var body: some Scene {
         
-        let store: ApplicationStore = ApplicationStore.instance
-        let mockService = MockDataService.shared
-
         WindowGroup {
-            HomeView()
-                .environmentObject(store)
-                .environmentObject(mockService)
+            let viewModel: LoanEligibilitySimulatorPersonalInfoViewModel = IoCContainer.resolve()
+            LoanEligibilitySimulatorPersonalInfoView(viewModel: viewModel)
         }
     }
 }

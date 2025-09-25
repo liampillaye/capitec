@@ -15,10 +15,10 @@ struct HomeView: View {
     
     var body: some View {
             TabView {
-                LoanEligibilitySimulatorPersonalInfoView()
-                    .tabItem {
-                        Label("Loan Simulator", systemImage: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
-                    }
+//                LoanEligibilitySimulatorPersonalInfoView(viewModel: <#T##LoanEligibilitySimulatorPersonalInfoViewModel#>)
+//                    .tabItem {
+//                        Label("Loan Simulator", systemImage: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
+//                    }
                 BranchLocatorMapView()
                     .tabItem {
                         Label("Branch Locator", systemImage: "location.magnifyingglass")

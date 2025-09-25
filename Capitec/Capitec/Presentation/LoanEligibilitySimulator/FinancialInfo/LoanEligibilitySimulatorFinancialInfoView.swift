@@ -72,7 +72,7 @@ struct LoanEligibilitySimulatorFinancialInfoView: View {
                 
                 Spacer()
                 
-                PrimaryButton(buttonTitle: "Go next", isDisabled: estimateAction()) {
+                PrimaryButton(buttonTitle: "Continue", isDisabled: estimateAction()) {
                     //                    store.employee.firstName = firstName
                     //                    store.employee.lastName = surname
                     //                    showClientView = true

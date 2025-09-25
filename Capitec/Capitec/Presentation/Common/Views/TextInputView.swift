@@ -22,7 +22,7 @@ struct TextInputView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .foregroundColor(
-                    error != nil ? Color(Constants.Colors.InputValidationErrorColor) : (editing ? Color(Constants.Colors.AccentColor) : Color(Constants.Colors.TextColor))
+                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ? Color(Constants.Colors.accentColor) : Color(Constants.Colors.textColor))
                 )
                 .bodySubtitleStyle()
             
@@ -37,12 +37,12 @@ struct TextInputView: View {
                 }
             )
             .keyboardType(keyboardType)
-            .foregroundColor(Color(Constants.Colors.TextColor))
+            .foregroundColor(Color(Constants.Colors.textColor))
             .padding(.top, 4)
             
             Rectangle()
                 .foregroundColor(
-                    error != nil ? Color(Constants.Colors.InputValidationErrorColor) : (editing ?  Color(Constants.Colors.AccentColor) : Color(Constants.Colors.TextColor))
+                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ?  Color(Constants.Colors.accentColor) : Color(Constants.Colors.textColor))
                 )
                 .frame(height: 1)
                 .padding(.top, 11)
@@ -50,10 +50,10 @@ struct TextInputView: View {
             if let error = error {
                 HStack {
                     Image(systemName: "exclamationmark.circle")
-                        .foregroundColor(Color(Constants.Colors.InputValidationErrorColor))
+                        .foregroundColor(Color(Constants.Colors.inputValidationErrorColor))
                     
                     Text(error)
-                        .foregroundColor(Color(Constants.Colors.InputValidationErrorColor))
+                        .foregroundColor(Color(Constants.Colors.inputValidationErrorColor))
                         .bodySubtitleStyle()
                 }
                 .padding(.top, 11)

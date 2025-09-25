@@ -25,10 +25,10 @@
 		65BE5CB42E83113800A9A638 /* Exceptions for "Capitec" folder in "CapitecTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Core/Constants/Constants.swift,
+				Core/Domain/Constants/Constants.swift,
 				Core/Domain/Data/Mocks/MockBranches.json,
 				Core/Domain/Models/Branch/Branch.swift,
-				Core/Utilities/JSONHelper.swift,
+				Core/Domain/Utilities/JSONHelper.swift,
 				Infrastructure/Infrastucture/Extensions/ArrayExtension.swift,
 				Infrastructure/Infrastucture/Extensions/CodableBundleExtension.swift,
 				Infrastructure/Infrastucture/Services/Mock/MockDataService.swift,

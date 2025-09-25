@@ -96,7 +96,7 @@ class DefaultHttpClient: HttpClient {
         
         guard (resp as? HTTPURLResponse)?.statusCode == 200 else
         {
-            throw HttpClientError.NetworkError
+            throw HttpClientError.networkError
         }
         
         let response = try JSONDecoder().decode(T.self, from:data)

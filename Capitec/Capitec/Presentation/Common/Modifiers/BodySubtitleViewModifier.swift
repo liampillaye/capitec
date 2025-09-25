@@ -13,7 +13,7 @@ struct BodySubtitleViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.system(size: 14, weight: fontWeight))
-            .foregroundColor(Color(Constants.Colors.NavigationBarSubtitleColor))
+            .foregroundColor(Color(Constants.Colors.navigationBarSubtitleColor))
             .multilineTextAlignment(.leading)
     }
 }

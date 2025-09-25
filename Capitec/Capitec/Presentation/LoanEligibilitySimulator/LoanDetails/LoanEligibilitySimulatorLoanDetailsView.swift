@@ -2,7 +2,7 @@
 //  LoanEligibilitySimulatorLoanDetailsView.swift
 //  Capitec
 //
-//  Created by Liam Pillaye on 2025/09/25.
+//  Created by Liam Pillaye.
 //
 
 import SwiftUI
@@ -65,7 +65,7 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                 
                 Spacer()
                 
-                PrimaryButton(buttonTitle: "Go next", isDisabled: estimateAction()) {
+                PrimaryButton(buttonTitle: "Continue", isDisabled: estimateAction()) {
                     //                    store.employee.firstName = firstName
                     //                    store.employee.lastName = surname
                     //                    showClientView = true

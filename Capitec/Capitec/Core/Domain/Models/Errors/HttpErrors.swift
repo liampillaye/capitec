@@ -10,5 +10,6 @@ import Foundation
 enum HttpClientError: Error {
     case unauthorized
     case invalidUrl
-    case NetworkError
+    case networkError
+    case notImplemented
 }
