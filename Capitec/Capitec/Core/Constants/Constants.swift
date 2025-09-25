@@ -27,9 +27,22 @@ enum Constants {
     }
     
     enum NavigationBar {
-
+        
+        enum LoanElilitySimulator {
+            static let title = "Loan Eligibility Simulator"
+            static let personalInfoTitle = "Personal Information"
+            static let financialInfoTitle = "Financial Information"
+            static let loanDetailsTitle = "Loan Details"
+        }
     }
     
-    enum Dashboard {
+    enum Colors {
+        static let AccentColor = "AccentColor"
+        static let InputValidationErrorColor = "InputValidationErrorColor"
+        static let NavigationBarSubtitleColor = "NavigationBarSubtitleColor"
+        static let NavigationBarTitleColor = "NavigationBarTitleColor"
+        static let PrimaryColor = "PrimaryColor"
+        static let TextBoarderColor = "TextBoarderColor"
+        static let TextColor = "TextColor"
     }
 }

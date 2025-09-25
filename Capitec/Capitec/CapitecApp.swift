@@ -15,7 +15,7 @@ struct CapitecApp: App {
         let mockService = MockDataService.shared
 
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environmentObject(store)
                 .environmentObject(mockService)
         }

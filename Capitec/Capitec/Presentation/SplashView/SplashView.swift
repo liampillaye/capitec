@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct SplashScreen: View {
+struct SplashView: View {
     var body: some View {
     }
 }
 
 #Preview {
-    SplashScreen()
+    SplashView()
 }
