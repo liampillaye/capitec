@@ -17,9 +17,9 @@ import Combine
     private var cancellables = Set<AnyCancellable>()
     
     //MARK: - Form Fields -
-    @Published var age: FormField = FormField(for: "age")
-    @Published var employmentStatus: FormField = FormField(for: "employmentStatus")
-    @Published var employmentDuration: FormField = FormField(for: "employmentDuration")
+    @Published var age: FormField = FormField(for: "age", ruleType: .minMaxIntRule)
+    @Published var employmentStatus: FormField = FormField(for: "employmentStatus", ruleType: .optionsRule)
+    @Published var employmentDuration: FormField = FormField(for: "employmentDuration", ruleType: .minOnlyRule)
     @Published var shouldForceUpdate: Bool = false
     
     //MARK: - Inits -
@@ -40,7 +40,7 @@ import Combine
         do {
             let personalInfoValidationRules = try self.manager.fetchPersonalInfoValidationRules()
             formValidator.addRule(for: "age", rule: personalInfoValidationRules.age)
-//            formValidator.addRule(for: "employmentStatus", rule: personalInfoValidationRules.employmentStatus)
+            formValidator.addRule(for: "employmentStatus", rule: personalInfoValidationRules.employmentStatus)
             formValidator.addRule(for: "employmentDuration", rule: personalInfoValidationRules.employmentDuration)
             return formValidator.validate()
         } catch {

@@ -9,6 +9,6 @@ import Foundation
 
 struct ValidationRulePersonalInfo {
     let age: ValidationRule
-    let employmentStatus: ValidationRuleEmploymentStatus
+    let employmentStatus: ValidationRule
     let employmentDuration: ValidationRule
 }

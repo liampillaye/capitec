@@ -10,13 +10,13 @@ import SwiftUI
 struct LoanEligibilitySimulatorPersonalInfoView: View {
     
     //MARK: PROPERTIES
-    @ObservedObject var viewModel: LoanEligibilitySimulatorPersonalInfoViewModel
-        
+    @StateObject var viewModel: LoanEligibilitySimulatorPersonalInfoViewModel
+    
     @State private var age: String = ""
     @State private var employmentStatus: String = ""
     @State private var employmentDuration: String = ""
     @State private var showFinancialInfoView: Bool = false
-        
+    
     //MARK: BODY
     var body: some View {
         NavigationStack {
@@ -55,10 +55,11 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                     }//:GROUP
                     
                     PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
-                        if viewModel.validate() {
-                            print("validation passed, no errors continue")
-                        } else {
-                            print("valdation failed.")
+                        viewModel.age.value = age
+                        viewModel.employmentStatus.value = employmentStatus
+                        viewModel.employmentDuration.value = employmentDuration
+                        Task {
+                            showFinancialInfoView = viewModel.validate()
                         }
                     }
                 }//: VSTACK
@@ -91,7 +92,7 @@ final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager
     }
     
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
-        ValidationRulePersonalInfo(age: ValidationRule(min: 0, max: nil, required: true, errorMessage: "Hello"), employmentStatus: ValidationRuleEmploymentStatus(employmentStatusRequired: true, options: ["test"], errorMessage: "test"), employmentDuration: ValidationRule(min: 0, max: nil, required: false, errorMessage: "Hello"))
+        ValidationRulePersonalInfo(age: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentStatus: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentDuration: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
     }
     
     func fetchAndSaveValidationRules() async throws {

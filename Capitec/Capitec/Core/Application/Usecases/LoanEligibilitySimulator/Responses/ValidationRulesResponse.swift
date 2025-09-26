@@ -28,6 +28,6 @@ struct LoanDetailsResponse: Codable {
 // MARK: - PersonalInfoResponse
 struct PersonalInfoResponse: Codable {
     let age: ValidationRule
-    let employmentStatus: ValidationRuleEmploymentStatus
+    let employmentStatus: ValidationRule
     let employmentDuration: ValidationRule
 }

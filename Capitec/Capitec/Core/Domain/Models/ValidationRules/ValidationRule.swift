@@ -8,13 +8,14 @@
 import Foundation
 
 struct ValidationRule: Codable {
-    let min: Int
-    let max: Int?
     let required: Bool
     let errorMessage: String
-
+    let min: Int?
+    let max: Int?
+    let options: [String]?
+    
     enum CodingKeys: String, CodingKey {
-        case min, max
+        case min, max, options
         case required = "required"
         case errorMessage
     }
