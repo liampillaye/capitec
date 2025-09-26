@@ -15,6 +15,8 @@ final class IoCContainer {
         register { DefaultValidationRulesRepository() as ValidationRulesRepository }
         register { DefaultLoanEligibilitySimulatorManager(service: resolve(), validationRepository: resolve()) as LoanEligibilitySimulatorManager }
         register { @MainActor in LoanEligibilitySimulatorPersonalInfoViewModel(manager: resolve())}
+        register { @MainActor in LoanEligibilitySimulatorFinancialInfoViewModel(manager: resolve())}
+        register { @MainActor in LoanEligibilitySimulatorLoanDetailsViewModel(manager: resolve())}
     }
     
     static func register<T>(_ factory: @escaping () -> T) {

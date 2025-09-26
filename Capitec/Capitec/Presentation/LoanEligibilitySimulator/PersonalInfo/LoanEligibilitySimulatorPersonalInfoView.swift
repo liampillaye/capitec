@@ -16,6 +16,9 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     @State private var employmentStatus: String = ""
     @State private var employmentDuration: String = ""
     @State private var showFinancialInfoView: Bool = false
+    @State private var showEmploymentStatusActionSheet: Bool = false
+    @State private var employmentStatusOption: String? = nil
+
     
     //MARK: BODY
     var body: some View {
@@ -36,7 +39,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                                       placeholder: "What is your age?",
                                       text: $age,
                                       error: $viewModel.age.error,
-                                      keyboardType: .numberPad)
+                                      keyboardType: .numberPad) 
                         
                         //Loan Term
                         TextInputView(title: "Employment Status",
@@ -44,6 +47,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                                       text: $employmentStatus,
                                       error: $viewModel.employmentStatus.error,
                                       keyboardType: .numberPad)
+                        
                         
                         //Loan Purpose
                         TextInputView(title: "Employment Duration",
@@ -61,10 +65,11 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                         Task {
                             showFinancialInfoView = viewModel.validate()
                         }
-                    }
+                    }//: PrimaryButton
                 }//: VSTACK
                 .navigationDestination(isPresented: $showFinancialInfoView) {
-                    //                OnboardingClientView()
+                    let vm: LoanEligibilitySimulatorFinancialInfoViewModel = IoCContainer.resolve()
+                    LoanEligibilitySimulatorFinancialInfoView(viewModel: vm)
                 }
                 .onAppear() {
                     Task {
@@ -82,20 +87,5 @@ struct LoanEligibilitySimulatorPersonalInfoView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = LoanEligibilitySimulatorPersonalInfoViewModel(manager: MockLoanEligibilitySimulatorManager())
         LoanEligibilitySimulatorPersonalInfoView(viewModel: vm)
-    }
-}
-
-// MARK: - Mock Manager for Previews
-final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
-    func fetchAndSaveValidationRules() throws {
-        //TODO
-    }
-    
-    func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
-        ValidationRulePersonalInfo(age: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentStatus: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentDuration: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
-    }
-    
-    func fetchAndSaveValidationRules() async throws {
-        //TODO
     }
 }

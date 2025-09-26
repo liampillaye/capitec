@@ -10,6 +10,9 @@ import Foundation
 protocol LoanEligibilitySimulatorManager {
     func fetchAndSaveValidationRules() throws
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo
+    func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo
+    func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails
+
 }
 
 final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
@@ -54,5 +57,13 @@ final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorMana
     
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
         try validationRepository.findPersonalInfoValidationRules()
+    }
+    
+    func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo {
+        try validationRepository.findFinancialInfoValidationRules()
+    }
+    
+    func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails {
+        try validationRepository.findLoanDetailsValidationRules()
     }
 }

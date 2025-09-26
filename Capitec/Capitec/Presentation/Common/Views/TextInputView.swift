@@ -22,7 +22,7 @@ struct TextInputView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .foregroundColor(
-                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ? Color(Constants.Colors.accentColor) : Color(Constants.Colors.textColor))
+                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ? Color(Constants.Colors.primaryThemeColor) : Color(Constants.Colors.textColor))
                 )
                 .bodySubtitleStyle()
             
@@ -42,7 +42,7 @@ struct TextInputView: View {
             
             Rectangle()
                 .foregroundColor(
-                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ?  Color(Constants.Colors.accentColor) : Color(Constants.Colors.textColor))
+                    error != nil ? Color(Constants.Colors.inputValidationErrorColor) : (editing ?  Color(Constants.Colors.primaryThemeColor) : Color(Constants.Colors.textColor))
                 )
                 .frame(height: 1)
                 .padding(.top, 11)
