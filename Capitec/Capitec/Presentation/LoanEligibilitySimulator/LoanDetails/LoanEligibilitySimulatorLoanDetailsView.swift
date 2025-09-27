@@ -27,7 +27,7 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                     NavigationBarView(
                         title1: Constants.NavigationBar.LoanElilitySimulator.title,
                         title2: Constants.NavigationBar.LoanElilitySimulator.loanDetailsTitle,
-                        stepCount: 3,
+                        stepCount: 1,
                         showStepper: true).padding(.bottom)
                     
                     

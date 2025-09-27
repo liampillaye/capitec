@@ -10,19 +10,19 @@ import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorPersonalInfoViewModel: ObservableObject {
         
+    //MARK: PRIVATE PROPERTIES
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
-    
-    @Published private(set) var isBusy: Bool = false
     private var cancellables = Set<AnyCancellable>()
-    
-    //MARK: - Form Fields -
+
+    //MARK: PUBLISHED PROPERTIES
+    @Published private(set) var isBusy: Bool = false
     @Published var age: FormField = FormField(for: "age", ruleType: .minMaxIntRule)
     @Published var employmentStatus: FormField = FormField(for: "employmentStatus", ruleType: .optionsRule)
     @Published var employmentDuration: FormField = FormField(for: "employmentDuration", ruleType: .minOnlyRule)
     @Published var shouldForceUpdate: Bool = false
     
-    //MARK: - Inits -
+    //MARK: - INITS
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
 
@@ -35,6 +35,7 @@ import Combine
             .store(in: &cancellables)
     }
     
+    //MARK: - PUBLIC FUNCTIONS
     func validate() -> Bool {
         
         do {

@@ -41,6 +41,12 @@ enum Constants {
             static let financialInfoTitle = "Financial Information"
             static let loanDetailsTitle = "Loan Details"
         }
+        
+        enum ProductOrNeeds {
+            static let title = "Choose a Product or a Need"
+            static let productTitle = "Choose a Product"
+            static let needTitle = "Choose a Need"
+        }
     }
     
     enum Colors {
@@ -51,5 +57,11 @@ enum Constants {
         static let primaryThemeColor = "PrimaryThemeColor"
         static let textBoarderColor = "TextBoarderColor"
         static let textColor = "TextColor"
+    }
+    
+    enum Images {
+        static let logo = "logo"
+        static let personalLoan = "personal_loan"
+        static let vehicleLoan = "vehicle_loan"
     }
 }

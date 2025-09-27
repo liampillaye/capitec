@@ -13,7 +13,7 @@ struct ProductResponse: Codable {
 }
 
 // MARK: - Product
-struct Product: Codable {
+struct Product: Codable, Identifiable {
     let id, name, description: String
     let minAmount, maxAmount, minTerm, maxTerm: Int
     let interestRateRange: InterestRateRange

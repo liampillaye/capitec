@@ -23,8 +23,7 @@ class MockDataService: ObservableObject {
     
     func loadDataFromBundle(_ mockResource: String) {
         let bundle = Bundle(for: type(of: self))
-        let branches: Branches = bundle.decode(mockResource)
-        store.setBranches(branches.branches)
+        let _: Branches = bundle.decode(mockResource)
     }
 }
 

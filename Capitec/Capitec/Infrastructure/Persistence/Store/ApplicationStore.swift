@@ -10,22 +10,15 @@ import Foundation
 class ApplicationStore: ObservableObject {
     
     //MARK: PROPERTIES
-    @Published var branches: [Branch]? = nil
+    @Published var products: [Product] = []
     
     //MARK: SHARED
     static let instance = ApplicationStore()
     
     //MARK: PRIVATE INIT
     private init() {}
-    
-    //MARK: PUBLIC FUNCTIONS
-    public func setBranches(_ branches: [Branch]) {
-        self.branches = branches
+        
+    public func setProducts(_ products: [Product]) {
+        self.products = products
     }
-    
-    //    public func findAndReplaceDevice(_ device: Device) {
-    //        if let index = self.devices.firstIndex(where: { $0.id == device.id }) {
-    //            self.devices[index] = device
-    //        }
-    //    }
 }

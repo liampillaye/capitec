@@ -17,8 +17,15 @@ struct CapitecApp: App {
     var body: some Scene {
         
         WindowGroup {
-            let viewModel: LoanEligibilitySimulatorPersonalInfoViewModel = IoCContainer.resolve()
-            LoanEligibilitySimulatorPersonalInfoView(viewModel: viewModel)
+            let store: ApplicationStore = ApplicationStore.instance
+
+            let viewModel: ProductsViewModel = IoCContainer.resolve()
+            ProductsView(viewModel: viewModel)
+                .environmentObject(store)
+
+//            let viewModel: LoanEligibilitySimulatorPersonalInfoViewModel = IoCContainer.resolve()
+//            LoanEligibilitySimulatorPersonalInfoView(viewModel: viewModel)
+//                .environmentObject(store)
         }
     }
 }

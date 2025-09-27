@@ -43,7 +43,7 @@ import Foundation
     
     private func validationRules(for field: FormField) -> Bool {
         switch field.ruleType {
-        case .minMaxIntRule:
+        case .minMaxIntRule, .minMaxDoubleRule:
             return minMaxIntValdiationRule(for: field)
         case .minOnlyRule:
             return minIntValdiationRule(for: field)
@@ -51,8 +51,6 @@ import Foundation
             return optionsValidationRule(for: field)
         case .none:
             return false
-        default:
-            return true
         }
     }
     
