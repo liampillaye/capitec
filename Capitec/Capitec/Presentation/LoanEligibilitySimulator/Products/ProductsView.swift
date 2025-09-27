@@ -29,12 +29,10 @@ struct ProductsView: View {
                         ProductCardView(title: product.name,
                                         caption: product.description,
                                         imageName: product.id,
-                                        product: product)
+                                        product: product).onTapGesture {
+                            viewModel.selectProduct(product: product)
+                        }
                     }
-                    
-                    PrimaryButton(buttonTitle: "Continue", isDisabled: viewModel.productSelected) {
-                        //Only enable the button once a product has been set
-                    }//: PrimaryButton
                 }//: VSTACK
                 .navigationDestination(isPresented: $showFinancialInfoView) {
                     let vm: LoanEligibilitySimulatorFinancialInfoViewModel = IoCContainer.resolve()
@@ -45,6 +43,13 @@ struct ProductsView: View {
                         viewModel.fetchProducts()
                     }
                 }
+                .onReceive(viewModel.$productSelected) {
+                    if $0 {
+                        showFinancialInfoView = $0
+                    }
+                }
+                
+               
             }//:SCROLLVIEW
         }//: NAVIGATION STACK
         .navigationBarBackButtonHidden()
@@ -52,11 +57,20 @@ struct ProductsView: View {
     }//:BODY
 }
 
-struct ProductsView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    
+    struct Preview: View {
+        
+        let store: ApplicationStore = ApplicationStore.instance
         let vm = ProductsViewModel(manager: MockProductsManager())
-        ProductsView(viewModel: vm)
+
+        var body: some View {
+            ProductsView(viewModel: vm)
+                .environmentObject(ApplicationStore.instance)
+        }
     }
+    
+    return Preview()
 }
 
 // MARK: - Mock Manager for Previews
@@ -66,7 +80,7 @@ final class MockProductsManager: ProductsManager {
         return []
     }
     
-    func saveSelectedProduct(_ product: Product) throws {
+    func saveSelectedProduct(_ product: Product) {
         //Do nothing
     }
 }

@@ -46,7 +46,7 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                                       error: $viewModel.loanTerm.error,
                                       keyboardType: .numberPad)
                         
-                        //Loan Purpose
+                        //Loan Purposex
                         TextInputView(title: "Loan Purpose",
                                       placeholder: "What is the purpose of the loan?",
                                       text: $loanPurpose,

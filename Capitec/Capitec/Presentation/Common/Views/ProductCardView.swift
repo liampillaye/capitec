@@ -25,7 +25,6 @@ struct ProductCardView: View {
                         .frame(width: 30, height: 30)
                         .padding(.bottom)
                 }//:VSTACK
-                Spacer()
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)
@@ -40,8 +39,10 @@ struct ProductCardView: View {
                         .padding(.bottom, 20)
                     
                 }//:VSTACK
+                Spacer()
                 VStack {
                     Button(action: {
+                        print("accessory disclosure selected: \(product.name)")
                     }) {
                         Image(systemName: "info.circle")
                             .resizable()

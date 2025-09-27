@@ -37,7 +37,7 @@ final class DefaultProductsManager: ProductsManager {
         
     }
     
-    func saveSelectedProduct(_ product: Product) throws {
-        
+    func saveSelectedProduct(_ product: Product) {
+        store.setSelectedProduct(product)
     }
 }

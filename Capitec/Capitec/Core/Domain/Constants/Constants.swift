@@ -44,8 +44,7 @@ enum Constants {
         
         enum ProductOrNeeds {
             static let title = "Choose a Product or a Need"
-            static let productTitle = "Choose a Product"
-            static let needTitle = "Choose a Need"
+            static let productTitle = "Get a solution up to R500 000 to suits your financial needs"
         }
     }
     

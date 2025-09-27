@@ -31,4 +31,9 @@ import Foundation
             productSelected = false
         }
     }
+    
+    func selectProduct(product: Product) {
+        self.manager.saveSelectedProduct(product)
+        productSelected = true
+    }
 }
