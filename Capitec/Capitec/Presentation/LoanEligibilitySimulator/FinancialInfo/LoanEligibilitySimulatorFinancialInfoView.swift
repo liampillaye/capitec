@@ -74,7 +74,9 @@ struct LoanEligibilitySimulatorFinancialInfoView: View {
                             existingDebt: Int(existingDebt) ?? 0,
                             creditScore: Int(creditScore) ?? 0)) {
                             Task {
-                                showEligiblityView = try viewModel.checkEligibility()
+                                if try viewModel.checkEligibility() {
+                                   showEligiblityView = try viewModel.calculateRate()
+                                }
                             }
                         }
                     }
@@ -160,5 +162,9 @@ final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager
     
     func fetchAndSaveValidationRules() async throws {
         //TODO
+    }
+    
+    func calculateRate() throws -> CalculateRate {
+        return mockCalculateRate
     }
 }

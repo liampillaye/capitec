@@ -11,11 +11,13 @@ class ApplicationStore: ObservableObject {
     
     //MARK: PROPERTIES
     @Published var products: [Product] = []
+    @Published var paymentSchedule: [MontlyPaymentSchedule] = []
     private(set) var selectedProduct: Product? = nil
     private(set) var loanDetails: LoanDetails? = nil
     private(set) var personalInfo: PersonalInfo? = nil
     private(set) var financialInfo: FinancialInfo? = nil
     private(set) var eligibility: Eligibility? = nil
+    private(set) var calculateRate: CalculateRate? = nil
     
     //MARK: SHARED
     static let instance = ApplicationStore()
@@ -46,5 +48,10 @@ class ApplicationStore: ObservableObject {
     
     public func setEligiblity(_ eligiblity: Eligibility) {
         self.eligibility = eligiblity
+    }
+    
+    public func setCalculateRate(_ calculateRate: CalculateRate) {
+        self.calculateRate = calculateRate
+        self.paymentSchedule = calculateRate.paymentSchedule
     }
 }

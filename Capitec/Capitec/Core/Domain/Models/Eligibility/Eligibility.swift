@@ -2,7 +2,7 @@
 //  Eligibility.swift
 //  Capitec
 //
-//  Created by Liam Pillaye on 2025/09/28.
+//  Created by Liam Pillaye.
 //
 
 import Foundation

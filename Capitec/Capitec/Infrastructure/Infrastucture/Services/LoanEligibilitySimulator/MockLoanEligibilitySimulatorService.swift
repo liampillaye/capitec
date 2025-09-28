@@ -21,8 +21,9 @@ final class MockLoanEligibilitySimulatorService: LoanEligibilitySimulatorService
     }
     
     func calculateRate() throws -> CalculateRateResponse {
-        throw HttpClientError.notImplemented
-
+        let bundle = Bundle(for: type(of: self))
+        let calculateRateResponse: CalculateRateResponse = bundle.decode(Constants.Mocks.Loans.calculateRates)
+        return calculateRateResponse
     }
     
     func getValidationRules() throws -> ValidationRulesResponse {

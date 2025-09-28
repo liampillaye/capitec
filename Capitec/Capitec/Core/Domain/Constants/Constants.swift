@@ -6,7 +6,7 @@
 //
 
 enum Constants {
-        
+    
     enum Store {
         static let bundle = "za.co.capitecbank.Capitec.store"
     }
@@ -15,7 +15,7 @@ enum Constants {
         enum Loans {
             static let eligibility = "Eligibility.json"
             static let products = "Products.json"
-            static let calculateRates = "CalculateRates.json"
+            static let calculateRates = "CalculateRate.json"
             static let valdiationRules = "ValidationRules.json"
         }
     }
@@ -48,7 +48,7 @@ enum Constants {
         static let textBoarderColor = "TextBoarderColor"
         static let textColor = "TextColor"
         static let dropShadowColor = "ColorBlackTransparentLight"
-        static let placeholderColor = "PlaceholderTextColor"
+        static let placeholderColor = "TextPlaceholderTextColor"
     }
     
     enum Images {
@@ -96,6 +96,23 @@ enum Constants {
             static let debtToIncomeRatioTitle = "Debt to Income Ratio:"
             static let loanToIncomeRatioTitle = "Loan to Income Ratio"
             static let affordabilityScoreTitle = "Affordability Score:"
+        }
+    }
+    
+    enum CalculateRate {
+        static let title = "Calculate Rate"
+        static let interestRateTitle = "Interest Rate:"
+        static let monthlyPaymentTitle = "Monthly Payment:"
+        static let totalInterestTitle = "Total Interest:"
+        static let totalRepaymentTitle = "Total Replayment:"
+        
+        enum PaymentSchedule {
+            static let title = "Payment Schedule"
+            static let monthTitle = "Month:"
+            static let paymentTitle = "Payment:"
+            static let principleTitle = "Principle:"
+            static let interestTitle = "Interest:"
+            static let balanceTitle = "Balance:"
         }
     }
 }

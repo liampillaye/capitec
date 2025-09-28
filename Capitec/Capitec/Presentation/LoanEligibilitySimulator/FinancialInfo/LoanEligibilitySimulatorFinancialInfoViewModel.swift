@@ -69,4 +69,14 @@ import Combine
             return false
         }
     }
+    
+    func calculateRate() throws -> Bool {
+        do {
+            let rate = try self.manager.calculateRate()
+            store.setCalculateRate(rate)
+            return true
+        } catch {
+            return false
+        }
+    }
 }

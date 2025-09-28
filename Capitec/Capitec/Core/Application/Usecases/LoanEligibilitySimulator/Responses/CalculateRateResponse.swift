@@ -10,7 +10,7 @@ import Foundation
 // MARK: - RateResponse
 struct CalculateRateResponse: Codable {
     let interestRate, monthlyPayment: Double
-    let totalInterest, totalRepayment: Int
+    let totalInterest, totalRepayment: Double
     let paymentSchedule: [PaymentSchedule]
 }
 

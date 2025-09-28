@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct ValidationRules {
     let personalInfo: ValidationRulePersonalInfo
     let loanDetails: ValidationRuleLoanDetails

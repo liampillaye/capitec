@@ -13,6 +13,7 @@ protocol LoanEligibilitySimulatorManager {
     func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo
     func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails
     func checkEligibility() throws -> Eligibility
+    func calculateRate() throws -> CalculateRate
 }
 
 final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
@@ -74,5 +75,26 @@ final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorMana
             recommendedLoan: eligiblityResponse.recommendedLoan,
             affordabilityAnalysis: eligiblityResponse.affordabilityAnalysis)
 
+    }
+    
+    func calculateRate() throws -> CalculateRate {
+        let calculateRateResponse = try service.calculateRate()
+        var monthlyPaymentSchedule: [MontlyPaymentSchedule] = []
+        
+        for paymentSchedule in calculateRateResponse.paymentSchedule {
+            monthlyPaymentSchedule.append(
+                MontlyPaymentSchedule(month: paymentSchedule.month,
+                                      payment: paymentSchedule.payment,
+                                      principal: paymentSchedule.principal,
+                                      interest: paymentSchedule.interest,
+                                      balance: paymentSchedule.balance))
+        }
+        
+        return CalculateRate(
+            interestRate: calculateRateResponse.interestRate,
+            monthlyPayment: calculateRateResponse.monthlyPayment,
+            totalInterest: calculateRateResponse.totalInterest,
+            totalRepayment: calculateRateResponse.totalRepayment,
+            paymentSchedule: monthlyPaymentSchedule)
     }
 }
