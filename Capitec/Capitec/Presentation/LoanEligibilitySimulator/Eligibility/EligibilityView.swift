@@ -12,7 +12,7 @@ struct EligibilityView: View {
     //MARK: PROPERTIES
     @EnvironmentObject private var store: ApplicationStore
     @StateObject var viewModel: EligibilityViewModel
-    @State private var selectedSegment: String = "eligibility"
+    @State private var selectedSegment: String = Constants.SegmentedControl.eligiblityTag
     @State private var resetEligibility: Bool = false
     @State private var showProductView: Bool = false
 
@@ -28,8 +28,8 @@ struct EligibilityView: View {
                     .multilineTextAlignment(.leading)
                 
                 Picker("Options", selection: $selectedSegment) {
-                        Text("Eligibility").tag("eligibility")
-                        Text("Calculate Rate").tag("calculate-rate")
+                    Text(Constants.SegmentedControl.eligiblityTitle).tag(Constants.SegmentedControl.eligiblityTag)
+                    Text(Constants.SegmentedControl.calculateRateTitle).tag(Constants.SegmentedControl.calculateTag)
                 }.pickerStyle(.segmented)
                     .padding()
                                 
@@ -84,19 +84,19 @@ struct EligibilityView: View {
                     
                 }
                 
-                PrimaryButton(buttonTitle: "Reset", isDisabled: false, buttonAction: {
+                PrimaryButton(buttonTitle: Constants.ResetAlert.resetPrimaryButtonTitle, isDisabled: false, buttonAction: {
                     resetEligibility = true
                 })
-                .alert("Reset Eligibility", isPresented: $resetEligibility) {
-                    Button("Reset") {
+                .alert(Constants.ResetAlert.title, isPresented: $resetEligibility) {
+                    Button(Constants.ResetAlert.yesButtonTitle) {
                         showProductView = true
                     }
                     
-                    Button("Cancel") {
+                    Button(Constants.ResetAlert.noButtonTitle) {
                         resetEligibility = false
                     }
                 } message: {
-                    Text("Are you sure you want to reset the eligibility? If you do you will need to start again.")
+                    Text(Constants.ResetAlert.message)
                 }
                 .navigationDestination(isPresented: $showProductView) {
                     let viewModel: ProductsViewModel = IoCContainer.resolve()
@@ -109,6 +109,7 @@ struct EligibilityView: View {
     }//:BODY
 }
 
+//MARK: PREVIEW
 #Preview {
     
     struct Preview: View {

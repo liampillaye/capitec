@@ -10,7 +10,7 @@ import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorLoanDetailsViewModel: ObservableObject {
         
-    //MARK: - Properties
+    //MARK: - PROPERTIES
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
     
@@ -19,12 +19,12 @@ import Combine
     
     private(set) var store = ApplicationStore.instance
     
-    //MARK: - Form Fields -
+    //MARK: - FORM FIELDS -
     @Published var requestAmount: FormField = FormField(for: "requestAmount", ruleType: .minMaxDoubleRule)
     @Published var loanTerm: FormField = FormField(for: "loanTerm", ruleType: .minMaxIntRule)
     @Published var shouldForceUpdate: Bool = false
     
-    //MARK: - Inits -
+    //MARK: - INITS -
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
 
@@ -39,6 +39,7 @@ import Combine
             .store(in: &cancellables)
     }
     
+    //MARK: PUBLIC FUNCTIONS
     func validate(loanDetails: LoanDetails) -> Bool {
         
         do {

@@ -33,29 +33,29 @@ struct LoanEligibilitySimulatorFinancialInfoView: View {
                     
                     Group {
                         //Monthly Income
-                        TextInputView(title: "Monthly Income",
-                                      placeholder: "What is your monthly income?",
+                        TextInputView(title: Constants.FinancialInfo.monthlyIncomeTitle,
+                                      placeholder: Constants.FinancialInfo.monthlyIncomePlaceholder,
                                       text: $monthlyIncome,
                                       error: $viewModel.monthlyIncome.error,
                                       keyboardType: .numberPad)
                         
                         //Monthly Expenses
-                        TextInputView(title: "Monthly Expenses",
-                                      placeholder: "What is your monthly expenses?",
+                        TextInputView(title: Constants.FinancialInfo.monthlyExpensesTitle,
+                                      placeholder: Constants.FinancialInfo.monthlyExpensesPlaceholder,
                                       text: $monthlyExpenses,
                                       error: $viewModel.monthlyExpenses.error,
                                       keyboardType: .numberPad)
                         
                         //Existing Debt
-                        TextInputView(title: "Existing Debt",
-                                      placeholder: "How much is your existing debt?",
+                        TextInputView(title: Constants.FinancialInfo.existingDebtTitle,
+                                      placeholder: Constants.FinancialInfo.existingDebtPlaceholder,
                                       text: $existingDebt,
                                       error: .constant(.none),
                                       keyboardType: .numberPad)
                         
                         //Credit Score
-                        TextInputView(title: "Credit Score",
-                                      placeholder: "What is your current credit score?",
+                        TextInputView(title: Constants.FinancialInfo.creditScoreTitle,
+                                      placeholder: Constants.FinancialInfo.creditScorePlaceholder,
                                       text: $creditScore,
                                       error: $viewModel.creditScore.error,
                                       keyboardType: .numberPad)
@@ -101,70 +101,5 @@ struct LoanEligibilitySimulatorFinancialInfoView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = LoanEligibilitySimulatorFinancialInfoViewModel(manager: MockLoanEligibilitySimulatorManager())
         LoanEligibilitySimulatorFinancialInfoView(viewModel: vm)
-    }
-}
-
-// MARK: - Mock Manager for Previews
-final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
-    func checkEligibility() throws -> Eligibility {
-        return Eligibility(
-            eligibilityResult: EligibilityResult(
-                isEligible: true,
-                approvalLikelihood: 85,
-                riskCategory: "low",
-                decisionReason: "Strong income-to-expense ratio and manageable existing debt"),
-            recommendedLoan: RecommendedLoan(
-                maxAmount: 180000,
-                recommendedAmount: 150000,
-                interestRate: 12.5,
-                monthlyPayment: 7089.50,
-                totalRepayment: 17014800),
-            affordabilityAnalysis: AffordabilityAnalysis(
-                disposableIncome: 10000.00,
-                debtToIncomeRatio: 20.0,
-                loanToIncomeRatio: 60.0,
-                affordabilityScore: "good"))
-    }
-    
-    func fetchAndSaveValidationRules() throws {
-        //TODO
-    }
-    
-    func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
-        ValidationRulePersonalInfo(
-            age: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil),
-            employmentStatus: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil),
-            employmentDuration: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil))
-    }
-    
-    func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo {
-        ValidationRuleFinancialInfo(monthlyIncome: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), monthlyExpenses: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), creditScore: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
-    }
-    
-    func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails {
-        ValidationRuleLoanDetails(requestedAmount: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), loanTerm: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
-    }
-    
-    func fetchAndSaveValidationRules() async throws {
-        //TODO
-    }
-    
-    func calculateRate() throws -> CalculateRate {
-        return mockCalculateRate
     }
 }

@@ -40,7 +40,6 @@ import Foundation
     }
     
     //MARK: PRIVATES FUNCTIONS
-    
     private func validationRules(for field: FormField) -> Bool {
         switch field.ruleType {
         case .minMaxIntRule, .minMaxDoubleRule:

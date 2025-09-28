@@ -37,15 +37,15 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                     
                     Group {
                         //Age
-                        TextInputView(title: "Age",
-                                      placeholder: "What is your age?",
+                        TextInputView(title: Constants.PersonalInfo.ageTitle,
+                                      placeholder: Constants.PersonalInfo.agePlaceholder,
                                       text: $age,
                                       error: $viewModel.age.error,
                                       keyboardType: .numberPad)
                         
                         //Employment Status
-                        TextViewWithActionTrigger(title: "Employment Status",
-                                                  placeholder: employmentStatus ?? "What is your employment status?",
+                        TextViewWithActionTrigger(title: Constants.PersonalInfo.employmentStatusTitle,
+                                                  placeholder: employmentStatus ?? Constants.PersonalInfo.employmentStatusPlaceholder,
                                                   dataPopulated: $employmentStatusSelected,
                                                   error: $viewModel.employmentStatus.error,
                                                   keyboardType: .numberPad) {
@@ -53,8 +53,8 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                         }
                         
                         //Employment Duration
-                        TextInputView(title: "Employment Duration",
-                                      placeholder: "What is your employment duration?",
+                        TextInputView(title: Constants.PersonalInfo.employmentDurationTitle,
+                                      placeholder: Constants.PersonalInfo.employmentDurationPlaceholder,
                                       text: $employmentDuration,
                                       error: $viewModel.employmentDuration.error,
                                       keyboardType: .numberPad)
@@ -101,6 +101,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     }//:BODY
 }
 
+//MARK: PREVIEW
 #Preview {
     
     struct Preview: View {

@@ -18,6 +18,4 @@ import Foundation
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
     }
-    
-    //MARK: - PUBLIC FUNCTIONS
 }

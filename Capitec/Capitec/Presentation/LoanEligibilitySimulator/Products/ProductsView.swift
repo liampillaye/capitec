@@ -66,6 +66,7 @@ struct ProductsView: View {
     }//:BODY
 }
 
+//MARK: PREVIEW
 #Preview {
     
     struct Preview: View {
@@ -80,16 +81,4 @@ struct ProductsView: View {
     }
     
     return Preview()
-}
-
-// MARK: - Mock Manager for Previews
-final class MockProductsManager: ProductsManager {
-    func fetchProducts() throws -> [Product] {
-        //Do nothing
-        return []
-    }
-    
-    func saveSelectedProduct(_ product: Product) {
-        //Do nothing
-    }
 }

@@ -34,22 +34,22 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                     
                     Group {
                         //Requested Amount
-                        TextInputView(title: "Requested Amount",
-                                      placeholder: "What is your requested Amount?",
+                        TextInputView(title: Constants.LoanDetails.requestAmountTitle,
+                                      placeholder: Constants.LoanDetails.requestAmountPlaceholder ,
                                       text: $requestedAmount,
                                       error: $viewModel.requestAmount.error,
                                       keyboardType: .numberPad)
                         
                         //Loan Term
-                        TextInputView(title: "Loan Term",
-                                      placeholder: "What is the term (months)?",
+                        TextInputView(title: Constants.LoanDetails.loanTermTitle,
+                                      placeholder: Constants.LoanDetails.loanTermPlacholder,
                                       text: $loanTerm,
                                       error: $viewModel.loanTerm.error,
                                       keyboardType: .numberPad)
                         
                         //Loan Purpose
-                        TextInputView(title: "Loan Purpose",
-                                      placeholder: "What is the purpose of the loan?",
+                        TextInputView(title: Constants.LoanDetails.loanTermTitle,
+                                      placeholder: Constants.LoanDetails.loanPurposePlaceholder,
                                       text: $loanPurpose,
                                       error: .constant(.none),
                                       keyboardType: .numberPad)
@@ -90,6 +90,7 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
     }//:BODY
 }
 
+//MARK: PREVIEW
 #Preview {
     
     struct Preview: View {

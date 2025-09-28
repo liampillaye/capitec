@@ -115,4 +115,48 @@ enum Constants {
             static let balanceTitle = "Balance:"
         }
     }
+    
+    enum SegmentedControl {
+        static let eligiblityTitle = "Eligibility"
+        static let eligiblityTag = "eligiblity"
+        static let calculateRateTitle = "Calculate Rate"
+        static let calculateTag = "calculate-rate"
+    }
+    
+    enum ResetAlert {
+        static let title = "Reset Eligibility"
+        static let message = "Are you sure you want to reset?"
+        static let yesButtonTitle = "Reset"
+        static let noButtonTitle = "Cancel"
+        static let resetPrimaryButtonTitle = "Reset"
+    }
+    
+    enum FinancialInfo {
+        static let monthlyIncomeTitle = "Monthly Income"
+        static let monthlyIncomePlaceholder = "What is your monthly income?"
+        static let monthlyExpensesTitle = "Monthly Expenses"
+        static let monthlyExpensesPlaceholder = "What is your monthly expenses?"
+        static let existingDebtTitle = "Existing Debt"
+        static let existingDebtPlaceholder = "How much is your existing debt?"
+        static let creditScoreTitle = "Credit Score"
+        static let creditScorePlaceholder = "What is your current credit score?"
+    }
+    
+    enum LoanDetails {
+        static let requestAmountTitle = "Request Amount"
+        static let requestAmountPlaceholder = "What is your requested Amount?"
+        static let loanTermTitle = "Loan Term"
+        static let loanTermPlacholder = "What is the term (months)?"
+        static let loanPurposeTitle = "Loan Purpose"
+        static let loanPurposePlaceholder = "What is the purpose of the loan?"
+    }
+    
+    enum PersonalInfo {
+        static let ageTitle = "Age"
+        static let agePlaceholder = "What is your age?"
+        static let employmentStatusTitle = "Employment Status"
+        static let employmentStatusPlaceholder = "What is your employment status?"
+        static let employmentDurationTitle = "Employment Duration"
+        static let employmentDurationPlaceholder = "How long have you been employed?"
+    }
 }
