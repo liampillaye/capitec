@@ -11,11 +11,12 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
     
     
     //MARK: PROPERTIES
+    @EnvironmentObject var store: ApplicationStore
     @StateObject var viewModel: LoanEligibilitySimulatorLoanDetailsViewModel
     @State private var requestedAmount: String = ""
     @State private var loanTerm: String = ""
     @State private var loanPurpose: String = ""
-    @State private var showEligibilityView: Bool = false
+    @State private var showPersonalInfoView: Bool = false
     
     
     //MARK: BODY
@@ -46,7 +47,7 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                                       error: $viewModel.loanTerm.error,
                                       keyboardType: .numberPad)
                         
-                        //Loan Purposex
+                        //Loan Purpose
                         TextInputView(title: "Loan Purpose",
                                       placeholder: "What is the purpose of the loan?",
                                       text: $loanPurpose,
@@ -55,23 +56,29 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                         
                     }//:GROUP
                     
-                    
                     Spacer()
                     
                     PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
                         viewModel.requestAmount.value = requestedAmount
                         viewModel.loanTerm.value = loanTerm
-                        showEligibilityView = viewModel.validate()
+                        showPersonalInfoView = viewModel.validate()
                     }
                 }//: VSTACK
-                .navigationDestination(isPresented: $showEligibilityView) {
-//                    let vm: LoanEligibilitySimulatorLoanDetailsViewModel = IoCContainer.resolve()
-//                    LoanEligibilitySimulatorLoanDetailsView(viewModel: vm)
+                .navigationDestination(isPresented: $showPersonalInfoView) {
+                    let viewModel: LoanEligibilitySimulatorPersonalInfoViewModel = IoCContainer.resolve()
+                    LoanEligibilitySimulatorPersonalInfoView(viewModel: viewModel)
                 }
                 .onAppear() {
                     Task {
                         try viewModel.fetchValidationRules()
                     }
+                    
+                    guard let selectedProduct = store.selectedProduct else {
+                        //Do nothing
+                        return
+                    }
+                    
+                    loanPurpose = selectedProduct.name
                 }
             }//:SCROLLVIEW
         }//: NAVIGATION STACK
@@ -80,10 +87,20 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
     }//:BODY
 }
 
-struct LoanEligibilitySimulatorLoanDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    
+    struct Preview: View {
+        
+        let store: ApplicationStore = ApplicationStore.instance
         let vm = LoanEligibilitySimulatorLoanDetailsViewModel(manager: MockLoanEligibilitySimulatorManager())
-        LoanEligibilitySimulatorLoanDetailsView(viewModel: vm)
+
+        var body: some View {
+            LoanEligibilitySimulatorLoanDetailsView(viewModel: vm)
+                .environmentObject(ApplicationStore.instance)
+        }
     }
+    
+    return Preview()
 }
+
 

@@ -83,9 +83,18 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     }//:BODY
 }
 
-struct LoanEligibilitySimulatorPersonalInfoView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    
+    struct Preview: View {
+        
+        let store: ApplicationStore = ApplicationStore.instance
         let vm = LoanEligibilitySimulatorPersonalInfoViewModel(manager: MockLoanEligibilitySimulatorManager())
-        LoanEligibilitySimulatorPersonalInfoView(viewModel: vm)
+
+        var body: some View {
+            LoanEligibilitySimulatorPersonalInfoView(viewModel: vm)
+                .environmentObject(ApplicationStore.instance)
+        }
     }
+    
+    return Preview()
 }
