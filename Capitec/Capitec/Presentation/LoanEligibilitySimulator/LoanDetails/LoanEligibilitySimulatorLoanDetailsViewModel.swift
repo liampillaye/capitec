@@ -10,11 +10,14 @@ import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorLoanDetailsViewModel: ObservableObject {
         
+    //MARK: - Properties
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
     
     @Published private(set) var isBusy: Bool = false
     private var cancellables = Set<AnyCancellable>()
+    
+    private(set) var store = ApplicationStore.instance
     
     //MARK: - Form Fields -
     @Published var requestAmount: FormField = FormField(for: "requestAmount", ruleType: .minMaxDoubleRule)
@@ -36,13 +39,17 @@ import Combine
             .store(in: &cancellables)
     }
     
-    func validate() -> Bool {
+    func validate(loanDetails: LoanDetails) -> Bool {
         
         do {
             let validationRuleLoanDetails = try self.manager.fetchLoanDetailsValidationRules()
             formValidator.addRule(for: "requestAmount", rule: validationRuleLoanDetails.requestedAmount)
             formValidator.addRule(for: "loanTerm", rule: validationRuleLoanDetails.loanTerm)
-            return formValidator.validate()
+            let isValid = formValidator.validate()
+            if isValid {
+                store.setLoanDetails(loanDetails)
+            }
+            return isValid
         } catch {
             return false //Handle error
         }

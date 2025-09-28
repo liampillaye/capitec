@@ -61,7 +61,10 @@ struct LoanEligibilitySimulatorLoanDetailsView: View {
                     PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
                         viewModel.requestAmount.value = requestedAmount
                         viewModel.loanTerm.value = loanTerm
-                        showPersonalInfoView = viewModel.validate()
+                        showPersonalInfoView = viewModel.validate(loanDetails:
+                                                                    LoanDetails(requestedAmount: Int(requestedAmount) ?? 0,
+                                                                                loanTerm: Int(loanTerm) ?? 0,
+                                                                                loanPurpose: store.selectedProduct?.id ?? ""))
                     }
                 }//: VSTACK
                 .navigationDestination(isPresented: $showPersonalInfoView) {

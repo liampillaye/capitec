@@ -10,19 +10,22 @@ import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorFinancialInfoViewModel: ObservableObject {
         
+    //MARK: - PROPERTIES
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
     
     @Published private(set) var isBusy: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    //MARK: - Form Fields -
+    private(set) var store = ApplicationStore.instance
+    
+    //MARK: - FORM FIELDS -
     @Published var monthlyIncome: FormField = FormField(for: "monthlyIncome", ruleType: .minOnlyRule)
     @Published var monthlyExpenses: FormField = FormField(for: "monthlyExpenses", ruleType: .minOnlyRule)
     @Published var creditScore: FormField = FormField(for: "creditScore", ruleType: .minMaxIntRule)
     @Published var shouldForceUpdate: Bool = false
     
-    //MARK: - Inits -
+    //MARK: - INITS -
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
 
@@ -45,7 +48,11 @@ import Combine
             formValidator.addRule(for: "monthlyIncome", rule: financialInfoValidationRules.monthlyIncome)
             formValidator.addRule(for: "monthlyExpenses", rule: financialInfoValidationRules.monthlyExpenses)
             formValidator.addRule(for: "creditScore", rule: financialInfoValidationRules.creditScore)
-            return formValidator.validate()
+            let isValid = formValidator.validate()
+            if isValid {
+                
+            }
+            return isValid
         } catch {
             return false //Handle error
         }
