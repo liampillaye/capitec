@@ -6,25 +6,12 @@
 //
 
 enum Constants {
-    
-    enum Services {
         
-        enum base {
-            static let baseUrl = "https://www.capitecbank.co.za/api/"
-        }
-        
-        enum branch {
-            static let basePath = "Branch"
-        }
-    }
-    
     enum Store {
         static let bundle = "za.co.capitecbank.Capitec.store"
     }
     
     enum Mocks {
-        static let branch = "MockBranches.json"
-        
         enum Loans {
             static let eligibility = "Eligibility.json"
             static let products = "Products.json"
@@ -56,11 +43,27 @@ enum Constants {
         static let primaryThemeColor = "PrimaryThemeColor"
         static let textBoarderColor = "TextBoarderColor"
         static let textColor = "TextColor"
+        static let dropShadowColor = "ColorBlackTransparentLight"
     }
     
     enum Images {
         static let logo = "logo"
         static let personalLoan = "personal_loan"
         static let vehicleLoan = "vehicle_loan"
+        static let closeIcon = "x.circle.fill"
+    }
+    
+    enum Product {
+        enum Details {
+            static let minimumAmountTitle = "Minimum Amount:"
+            static let maximumAmountTitle = "Maximum Amount:"
+            static let currencyISOCode = "ZAR"
+            static let minimumTermTitle = "Minimum Term:"
+            static let monthsTitle = "(Months)"
+            static let maxiumTermTitle = "Maximum Term:"
+            static let maximumInterestRateTitle = "Maximum Interest Rate:"
+            static let minimumInterestRateTitle = "Minimum Interest Rate:"
+            static let generalPurposesTitle = "General Purposes:"
+        }
     }
 }

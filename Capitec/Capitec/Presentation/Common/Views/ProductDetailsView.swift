@@ -47,7 +47,7 @@ struct ProductDetailsView: View {
                         Button(action: {
                             closeProductDetailsAction()
                         }) {
-                            Image(systemName: "x.circle.fill")
+                            Image(systemName: Constants.Images.closeIcon)
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(Color(Constants.Colors.primaryThemeColor))
                                 .shadow(radius: 1)
@@ -68,28 +68,28 @@ struct ProductDetailsView: View {
             //Replayment Amounts
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("Minimum Amount:")
+                    Text(Constants.Product.Details.minimumAmountTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
                     
                     Spacer()
                     
-                    Text(selectedProduct?.minAmount ?? 0, format: .currency(code: "ZAR"))
+                    Text(selectedProduct?.minAmount ?? 0, format: .currency(code: Constants.Product.Details.currencyISOCode))
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(1)
                 }//:HSTACK
                 
                 HStack {
-                    Text("Maximum Amount:")
+                    Text(Constants.Product.Details.maximumAmountTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
                     
                     Spacer()
                     
-                    Text(selectedProduct?.maxAmount ?? 0, format: .currency(code: "ZAR"))
+                    Text(selectedProduct?.maxAmount ?? 0, format: .currency(code: Constants.Product.Details.currencyISOCode))
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(1)
@@ -102,28 +102,28 @@ struct ProductDetailsView: View {
             //Monthly Terms
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("Minimum Term:")
+                    Text(Constants.Product.Details.minimumTermTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
                     
                     Spacer()
                     
-                    Text("\(selectedProduct?.minTerm ?? 0) (Months)")
+                    Text("\(selectedProduct?.minTerm ?? 0) \(Constants.Product.Details.monthsTitle)")
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(1)
                 }//:HSTACK
                 
                 HStack {
-                    Text("Maximum Term:")
+                    Text(Constants.Product.Details.maxiumTermTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
                     
                     Spacer()
                     
-                    Text("\(selectedProduct?.maxTerm ?? 0) (Months)")
+                    Text("\(selectedProduct?.maxTerm ?? 0) \(Constants.Product.Details.monthsTitle)")
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(1)
@@ -136,7 +136,7 @@ struct ProductDetailsView: View {
             //Interest Rates
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("Minimum Interest Rate:")
+                    Text(Constants.Product.Details.minimumInterestRateTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
@@ -150,7 +150,7 @@ struct ProductDetailsView: View {
                 }//:HSTACK
                 
                 HStack {
-                    Text("Maximum Interest Rate:")
+                    Text(Constants.Product.Details.maximumInterestRateTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
@@ -170,7 +170,7 @@ struct ProductDetailsView: View {
             //Purposes
             VStack(alignment: .trailing, spacing: 12) {
                 HStack {
-                    Text("General Purposes:")
+                    Text(Constants.Product.Details.minimumInterestRateTitle)
                         .font(.system(.caption))
                         .foregroundColor(.black)
                         .lineLimit(2)
@@ -189,12 +189,13 @@ struct ProductDetailsView: View {
         }//:VSTACK
         .background(Color.white)
         .cornerRadius(12)
-        .shadow(color: Color("ColorBlackTransparentLight"), radius: 8, x: 0, y: 0)
+        .shadow(color: Color(Constants.Colors.dropShadowColor), radius: 8, x: 0, y: 0)
         .padding()
 
     }//:BODY
 }
 
+//MARK: PREVIEW
 #Preview {
     struct Preview: View {
                 
