@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct LoanEligibilitySimulatorFinancialInfoView: View {
-    
-    @StateObject var viewModel: LoanEligibilitySimulatorFinancialInfoViewModel
-    
+        
     //MARK: PROPERTIES
+    @StateObject var viewModel: LoanEligibilitySimulatorFinancialInfoViewModel
     @State private var monthlyIncome: String = ""
     @State private var monthlyExpenses: String = ""
     @State private var existingDebt: String = ""
     @State private var creditScore: String = ""
-    @State private var showLoanDetailsView: Bool = false
+    @State private var showEligiblityView: Bool = false
     
         
     //MARK: BODY
@@ -65,16 +64,24 @@ struct LoanEligibilitySimulatorFinancialInfoView: View {
                     
                     Spacer()
                     
-                    PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
+                    PrimaryButton(buttonTitle: "Eligibility Check", isDisabled: false) {
                         viewModel.monthlyIncome.value = monthlyIncome
                         viewModel.monthlyExpenses.value = monthlyExpenses
                         viewModel.creditScore.value = creditScore
-                        showLoanDetailsView = viewModel.validate()
+                        if viewModel.validate(financialInfo: FinancialInfo(
+                            monthlyIncome: Int(monthlyIncome) ?? 0,
+                            monthlyExpenses: Int(monthlyExpenses) ?? 0,
+                            existingDebt: Int(existingDebt) ?? 0,
+                            creditScore: Int(creditScore) ?? 0)) {
+                            Task {
+                                showEligiblityView = try viewModel.checkEligibility()
+                            }
+                        }
                     }
                 }//: VSTACK
-                .navigationDestination(isPresented: $showLoanDetailsView) {
-                    let vm: LoanEligibilitySimulatorLoanDetailsViewModel = IoCContainer.resolve()
-                    LoanEligibilitySimulatorLoanDetailsView(viewModel: vm)
+                .navigationDestination(isPresented: $showEligiblityView) {
+                    let vm: EligibilityViewModel = IoCContainer.resolve()
+                    EligibilityView(viewModel: vm)
                 }
                 .onAppear() {
                     Task {
@@ -97,12 +104,50 @@ struct LoanEligibilitySimulatorFinancialInfoView_Previews: PreviewProvider {
 
 // MARK: - Mock Manager for Previews
 final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
+    func checkEligibility() throws -> Eligibility {
+        return Eligibility(
+            eligibilityResult: EligibilityResult(
+                isEligible: true,
+                approvalLikelihood: 85,
+                riskCategory: "low",
+                decisionReason: "Strong income-to-expense ratio and manageable existing debt"),
+            recommendedLoan: RecommendedLoan(
+                maxAmount: 180000,
+                recommendedAmount: 150000,
+                interestRate: 12.5,
+                monthlyPayment: 7089.50,
+                totalRepayment: 17014800),
+            affordabilityAnalysis: AffordabilityAnalysis(
+                disposableIncome: 10000.00,
+                debtToIncomeRatio: 20.0,
+                loanToIncomeRatio: 60.0,
+                affordabilityScore: "good"))
+    }
+    
     func fetchAndSaveValidationRules() throws {
         //TODO
     }
     
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
-        ValidationRulePersonalInfo(age: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentStatus: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), employmentDuration: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
+        ValidationRulePersonalInfo(
+            age: ValidationRule(
+                required: true,
+                errorMessage: "Test",
+                min: 0,
+                max: 0,
+                options: nil),
+            employmentStatus: ValidationRule(
+                required: true,
+                errorMessage: "Test",
+                min: 0,
+                max: 0,
+                options: nil),
+            employmentDuration: ValidationRule(
+                required: true,
+                errorMessage: "Test",
+                min: 0,
+                max: 0,
+                options: nil))
     }
     
     func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo {

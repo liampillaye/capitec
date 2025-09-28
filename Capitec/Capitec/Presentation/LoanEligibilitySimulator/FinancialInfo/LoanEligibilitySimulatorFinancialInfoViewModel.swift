@@ -9,15 +9,13 @@ import Foundation
 import Combine
 
 @MainActor internal final class LoanEligibilitySimulatorFinancialInfoViewModel: ObservableObject {
-        
+    
     //MARK: - PROPERTIES
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
-    
-    @Published private(set) var isBusy: Bool = false
     private var cancellables = Set<AnyCancellable>()
-    
-    private(set) var store = ApplicationStore.instance
+    private let store = ApplicationStore.instance
+    @Published private(set) var isBusy: Bool = false
     
     //MARK: - FORM FIELDS -
     @Published var monthlyIncome: FormField = FormField(for: "monthlyIncome", ruleType: .minOnlyRule)
@@ -28,7 +26,7 @@ import Combine
     //MARK: - INITS -
     init(manager: LoanEligibilitySimulatorManager) {
         self.manager = manager
-
+        
         formValidator.addFields(fields: [
             self.monthlyIncome,
             self.monthlyExpenses,
@@ -41,7 +39,7 @@ import Combine
             .store(in: &cancellables)
     }
     
-    func validate() -> Bool {
+    func validate(financialInfo: FinancialInfo) -> Bool {
         
         do {
             let financialInfoValidationRules = try self.manager.fetchFinancialInfoValidationRules()
@@ -50,7 +48,7 @@ import Combine
             formValidator.addRule(for: "creditScore", rule: financialInfoValidationRules.creditScore)
             let isValid = formValidator.validate()
             if isValid {
-                
+                store.setFinacialInfo(financialInfo)
             }
             return isValid
         } catch {
@@ -60,5 +58,15 @@ import Combine
     
     func fetchValidationRules() throws {
         try self.manager.fetchAndSaveValidationRules()
+    }
+    
+    func checkEligibility() throws -> Bool {
+        do {
+            let eligibility = try self.manager.checkEligibility()
+            store.setEligiblity(eligibility)
+            return true
+        } catch {
+            return false
+        }
     }
 }

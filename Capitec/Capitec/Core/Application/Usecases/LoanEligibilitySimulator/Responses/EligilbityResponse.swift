@@ -16,7 +16,7 @@ struct EligibilityResponse: Codable {
 
 // MARK: - AffordabilityAnalysis
 struct AffordabilityAnalysis: Codable {
-    let disposableIncome, debtToIncomeRatio, loanToIncomeRatio: Int
+    let disposableIncome, debtToIncomeRatio, loanToIncomeRatio: Double
     let affordabilityScore: String
 }
 
@@ -29,7 +29,6 @@ struct EligibilityResult: Codable {
 
 // MARK: - RecommendedLoan
 struct RecommendedLoan: Codable {
-    let maxAmount, recommendedAmount: Int
-    let interestRate, monthlyPayment: Double
-    let totalRepayment: Int
+    let maxAmount, recommendedAmount: Double
+    let interestRate, monthlyPayment, totalRepayment: Double
 }

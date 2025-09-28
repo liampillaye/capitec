@@ -30,6 +30,7 @@ final class IoCContainer {
         register { @MainActor in LoanEligibilitySimulatorFinancialInfoViewModel(manager: resolve())}
         register { @MainActor in LoanEligibilitySimulatorLoanDetailsViewModel(manager: resolve())}
         register { @MainActor in ProductsViewModel(manager: resolve()) }
+        register { @MainActor in EligibilityViewModel(manager: resolve()) }
     }
     
     static func register<T>(_ factory: @escaping () -> T) {

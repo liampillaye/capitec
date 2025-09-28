@@ -9,7 +9,9 @@ import Foundation
 
 final class MockLoanEligibilitySimulatorService: LoanEligibilitySimulatorService {
     func eligiblity() throws -> EligibilityResponse {
-        throw HttpClientError.notImplemented
+        let bundle = Bundle(for: type(of: self))
+        let eligibilityResponse: EligibilityResponse = bundle.decode(Constants.Mocks.Loans.eligibility)
+        return eligibilityResponse
     }
     
     func getProducts() throws -> [Product] {

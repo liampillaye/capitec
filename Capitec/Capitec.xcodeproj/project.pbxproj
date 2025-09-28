@@ -26,7 +26,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Core/Domain/Constants/Constants.swift,
-				Core/Domain/Models/Branch/Branch.swift,
 				Core/Domain/Utilities/JSONHelper.swift,
 				Infrastructure/Infrastucture/Extensions/ArrayExtension.swift,
 				Infrastructure/Infrastucture/Extensions/CodableBundleExtension.swift,

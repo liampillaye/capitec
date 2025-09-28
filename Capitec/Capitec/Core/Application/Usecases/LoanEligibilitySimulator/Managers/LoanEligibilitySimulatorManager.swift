@@ -12,7 +12,7 @@ protocol LoanEligibilitySimulatorManager {
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo
     func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo
     func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails
-
+    func checkEligibility() throws -> Eligibility
 }
 
 final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager {
@@ -65,5 +65,14 @@ final class DefaultLoanEligibilitySimulatorManager: LoanEligibilitySimulatorMana
     
     func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails {
         try validationRepository.findLoanDetailsValidationRules()
+    }
+    
+    func checkEligibility() throws -> Eligibility {
+        let eligiblityResponse = try service.eligiblity()
+        return Eligibility(
+            eligibilityResult: eligiblityResponse.eligibilityResult,
+            recommendedLoan: eligiblityResponse.recommendedLoan,
+            affordabilityAnalysis: eligiblityResponse.affordabilityAnalysis)
+
     }
 }
