@@ -33,7 +33,7 @@ struct EligibilityView: View {
                 }.pickerStyle(.segmented)
                     .padding()
                                 
-                if selectedSegment == "eligibility" {
+                if selectedSegment == Constants.SegmentedControl.eligiblityTag {
                     EligibilityResultCard(isEligible: store.eligibility?.eligibilityResult.isEligible ?? false,
                                           approvalLikelihood: store.eligibility?.eligibilityResult.approvalLikelihood ?? 0,
                                           riskCategory: store.eligibility?.eligibilityResult.riskCategory ?? "unknown",

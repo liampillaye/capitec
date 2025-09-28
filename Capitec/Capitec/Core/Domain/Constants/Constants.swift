@@ -118,14 +118,14 @@ enum Constants {
     
     enum SegmentedControl {
         static let eligiblityTitle = "Eligibility"
-        static let eligiblityTag = "eligiblity"
+        static let eligiblityTag = "eligibility"
         static let calculateRateTitle = "Calculate Rate"
         static let calculateTag = "calculate-rate"
     }
     
     enum ResetAlert {
         static let title = "Reset Eligibility"
-        static let message = "Are you sure you want to reset?"
+        static let message = "Are you sure you want to reset? If you do you will need to start again."
         static let yesButtonTitle = "Reset"
         static let noButtonTitle = "Cancel"
         static let resetPrimaryButtonTitle = "Reset"
