@@ -14,6 +14,7 @@ struct ProductCardView: View {
     var caption: String
     var imageName: String
     var product: Product
+    var accessoryDisclosureAction: (Product) -> Void
     
     //MARK: - BODY
     var body: some View {
@@ -42,7 +43,7 @@ struct ProductCardView: View {
                 Spacer()
                 VStack {
                     Button(action: {
-                        print("accessory disclosure selected: \(product.name)")
+                        accessoryDisclosureAction(product)
                     }) {
                         Image(systemName: "info.circle")
                             .resizable()
@@ -76,5 +77,7 @@ struct ProductCardView: View {
         minTerm: 6,
         maxTerm: 60,
         interestRateRange: InterestRateRange(min: 8.5, max: 15.0),
-        purposes: ["debt_consolidation", "home_improvement", "education", "medical", "other"]))
+        purposes: ["debt_consolidation", "home_improvement", "education", "medical", "other"])) { product in
+            //Do something
+        }
 }
