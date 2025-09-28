@@ -33,39 +33,17 @@ final class MockLoanEligibilitySimulatorManager: LoanEligibilitySimulatorManager
     }
     
     func fetchPersonalInfoValidationRules() throws -> ValidationRulePersonalInfo {
-        ValidationRulePersonalInfo(
-            age: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil),
-            employmentStatus: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil),
-            employmentDuration: ValidationRule(
-                required: true,
-                errorMessage: "Test",
-                min: 0,
-                max: 0,
-                options: nil))
+        mockPersonalInfoValidationRule
     }
     
     func fetchFinancialInfoValidationRules() throws -> ValidationRuleFinancialInfo {
-        ValidationRuleFinancialInfo(monthlyIncome: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), monthlyExpenses: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), creditScore: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
+        mockFinancialInfoValidationRule
     }
     
     func fetchLoanDetailsValidationRules() throws -> ValidationRuleLoanDetails {
-        ValidationRuleLoanDetails(requestedAmount: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil), loanTerm: ValidationRule(required: true, errorMessage: "Test", min: 0, max: 0, options: nil))
+        mockLoanDetailsValidationRule
     }
-    
-    func fetchAndSaveValidationRules() async throws {
-        //TODO
-    }
-    
+        
     func calculateRate() throws -> CalculateRate {
         return mockCalculateRate
     }

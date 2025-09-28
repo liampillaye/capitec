@@ -9,8 +9,7 @@ import Foundation
 
 final class MockProductsManager: ProductsManager {
     func fetchProducts() throws -> [Product] {
-        //Do nothing
-        return []
+        return [mockProduct]
     }
     
     func saveSelectedProduct(_ product: Product) {
