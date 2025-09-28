@@ -20,7 +20,6 @@ class MockDataService: ObservableObject {
     }
     
     //MARK: PUBLIC METHODS
-    
     func loadDataFromBundle(_ mockResource: String) {
         let bundle = Bundle(for: type(of: self))
         let _: Branches = bundle.decode(mockResource)

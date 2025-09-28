@@ -11,6 +11,7 @@ import SwiftUI
 struct CapitecApp: App {
     
     init() {
+        //Register Dependencies
         IoCContainer.registerDependencies()
     }
     
@@ -18,7 +19,6 @@ struct CapitecApp: App {
         
         WindowGroup {
             let store: ApplicationStore = ApplicationStore.instance
-
             let viewModel: ProductsViewModel = IoCContainer.resolve()
             ProductsView(viewModel: viewModel)
                 .environmentObject(store)

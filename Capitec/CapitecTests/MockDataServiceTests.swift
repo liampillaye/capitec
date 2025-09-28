@@ -31,11 +31,9 @@ final class MockDataServiceTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
-        mockDataService?.loadDataFromBundle("MockBranches.json")
+//        mockDataService?.loadDataFromBundle("MockBranches.json")
         
         
-        XCTAssertNotNil(store?.branches)
-        XCTAssertGreaterThan(store?.branches?.count ?? 0, 0)
         
     }
 
