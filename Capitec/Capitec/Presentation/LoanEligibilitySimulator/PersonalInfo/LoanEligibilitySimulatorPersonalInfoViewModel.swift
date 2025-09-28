@@ -14,6 +14,7 @@ import Combine
     private let formValidator: FormValidator = FormValidator()
     private let manager: LoanEligibilitySimulatorManager
     private var cancellables = Set<AnyCancellable>()
+    private let store = ApplicationStore.instance
 
     //MARK: PUBLISHED PROPERTIES
     @Published private(set) var isBusy: Bool = false
@@ -21,6 +22,7 @@ import Combine
     @Published var employmentStatus: FormField = FormField(for: "employmentStatus", ruleType: .optionsRule)
     @Published var employmentDuration: FormField = FormField(for: "employmentDuration", ruleType: .minOnlyRule)
     @Published var shouldForceUpdate: Bool = false
+    @Published var employeeStatusOptions: [String] = []
     
     //MARK: - INITS
     init(manager: LoanEligibilitySimulatorManager) {
@@ -36,20 +38,30 @@ import Combine
     }
     
     //MARK: - PUBLIC FUNCTIONS
-    func validate() -> Bool {
+    func validate(personalInfo: PersonalInfo) -> Bool {
         
         do {
             let personalInfoValidationRules = try self.manager.fetchPersonalInfoValidationRules()
             formValidator.addRule(for: "age", rule: personalInfoValidationRules.age)
             formValidator.addRule(for: "employmentStatus", rule: personalInfoValidationRules.employmentStatus)
             formValidator.addRule(for: "employmentDuration", rule: personalInfoValidationRules.employmentDuration)
-            return formValidator.validate()
+            let isValid = formValidator.validate()
+            if isValid {
+                store.setPersonalInfo(personalInfo)
+            }
+            return isValid
         } catch {
             return false //Handle error
         }
     }
     
     func fetchValidationRules() throws {
-        try self.manager.fetchAndSaveValidationRules()
+        do {
+            try self.manager.fetchAndSaveValidationRules()
+            let personalInfoValidationRules = try self.manager.fetchPersonalInfoValidationRules()
+            employeeStatusOptions = personalInfoValidationRules.employmentStatus.options ?? []
+        } catch {
+            throw error
+        }
     }
 }

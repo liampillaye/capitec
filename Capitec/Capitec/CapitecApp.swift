@@ -11,6 +11,8 @@ import SwiftUI
 struct CapitecApp: App {
     
     init() {
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color(Constants.Colors.primaryThemeColor))
+
         //Register Dependencies
         IoCContainer.registerDependencies()
     }
@@ -22,10 +24,6 @@ struct CapitecApp: App {
             let viewModel: ProductsViewModel = IoCContainer.resolve()
             ProductsView(viewModel: viewModel)
                 .environmentObject(store)
-
-//            let viewModel: LoanEligibilitySimulatorPersonalInfoViewModel = IoCContainer.resolve()
-//            LoanEligibilitySimulatorPersonalInfoView(viewModel: viewModel)
-//                .environmentObject(store)
         }
     }
 }

@@ -13,6 +13,7 @@ class ApplicationStore: ObservableObject {
     @Published var products: [Product] = []
     var selectedProduct: Product? = nil
     var loanDetails: LoanDetails? = nil
+    var personalInfo: PersonalInfo? = nil
     
     //MARK: SHARED
     static let instance = ApplicationStore()
@@ -31,5 +32,9 @@ class ApplicationStore: ObservableObject {
     
     public func setLoanDetails(_ loanDetails: LoanDetails) {
         self.loanDetails = loanDetails
+    }
+    
+    public func setPersonalInfo(_ personalInfo: PersonalInfo) {
+        self.personalInfo = personalInfo
     }
 }

@@ -13,7 +13,8 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     @StateObject var viewModel: LoanEligibilitySimulatorPersonalInfoViewModel
     
     @State private var age: String = ""
-    @State private var employmentStatus: String = ""
+    @State private var employmentStatus: String? = nil
+    @State private var employmentStatusSelected: Bool = false
     @State private var employmentDuration: String = ""
     @State private var showFinancialInfoView: Bool = false
     @State private var showEmploymentStatusActionSheet: Bool = false
@@ -22,6 +23,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     
     //MARK: BODY
     var body: some View {
+        
         NavigationStack {
             ScrollView {
                 VStack {
@@ -43,13 +45,12 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                         
                         //Employment Status
                         TextViewWithActionTrigger(title: "Employment Status",
-                                                  placeholder: "What is your employment status?",
-                                                  text: $employmentStatus,
+                                                  placeholder: employmentStatus ?? "What is your employment status?",
+                                                  dataPopulated: $employmentStatusSelected,
                                                   error: $viewModel.employmentStatus.error,
                                                   keyboardType: .numberPad) {
-                            print("Do Something HERE!")
+                            showEmploymentStatusActionSheet = true
                         }
-                        
                         
                         //Employment Duration
                         TextInputView(title: "Employment Duration",
@@ -62,10 +63,13 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                     
                     PrimaryButton(buttonTitle: "Continue", isDisabled: false) {
                         viewModel.age.value = age
-                        viewModel.employmentStatus.value = employmentStatus
+                        viewModel.employmentStatus.value = employmentStatus ?? ""
                         viewModel.employmentDuration.value = employmentDuration
                         Task {
-                            showFinancialInfoView = viewModel.validate()
+                            showFinancialInfoView = viewModel.validate(personalInfo: PersonalInfo(
+                                age: Int(age) ?? 0,
+                                employmentStatus: employmentStatus ?? "",
+                                employmentDuration: Int(employmentDuration) ?? 0))
                         }
                     }//: PrimaryButton
                 }//: VSTACK
@@ -77,6 +81,18 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                     Task {
                         try viewModel.fetchValidationRules()
                     }
+                }
+                .actionSheet(isPresented: $showEmploymentStatusActionSheet) {
+                    ActionSheet(
+                        title: Text("Employee Status"),
+                        message: Text("What is your employment status?"),
+                        buttons: viewModel.employeeStatusOptions.map { option in
+                                .default(Text(option)) {
+                                    employmentStatusSelected = true
+                                    employmentStatus = option
+                                }
+                        }
+                    )
                 }
             }//:SCROLLVIEW
         }//: NAVIGATION STACK

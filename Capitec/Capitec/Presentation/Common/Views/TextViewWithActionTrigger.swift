@@ -9,10 +9,11 @@ import SwiftUI
 
 struct TextViewWithActionTrigger: View {
     
+    //MARK: PROPERTIES
     var title: String
     var placeholder: String
+    @Binding var dataPopulated: Bool
     @State private var editing: Bool = false
-    @Binding var text: String
     @Binding var error: String?
     var keyboardType: UIKeyboardType = .default
     var tapGestureTriggerAction: () -> Void
@@ -26,12 +27,18 @@ struct TextViewWithActionTrigger: View {
                 )
                 .bodySubtitleStyle()
             
-            Text(placeholder)
-                .keyboardType(keyboardType)
-                .foregroundColor(Color(Constants.Colors.placeholderColor))
-                .padding(.top, 4)
+            if dataPopulated {
+                Text(placeholder)
+                    .keyboardType(keyboardType)
+                    .foregroundColor(Color(Constants.Colors.textColor))
+                    .padding(.top, 4)
 
-                
+            } else {
+                Text(placeholder)
+                    .keyboardType(keyboardType)
+                    .foregroundColor(Color(Constants.Colors.placeholderColor))
+                    .padding(.top, 4)
+            }
             
             Rectangle()
                 .foregroundColor(
@@ -64,7 +71,7 @@ struct TextViewWithActionTrigger: View {
     TextViewWithActionTrigger(
         title: "What is your age?",
         placeholder: "Age",
-        text: .constant(""),
+        dataPopulated: .constant(false),
         error: .constant(nil),
         keyboardType: .numberPad) {
             //Do something
