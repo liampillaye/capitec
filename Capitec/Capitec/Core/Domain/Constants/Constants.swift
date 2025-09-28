@@ -44,6 +44,7 @@ enum Constants {
         static let textBoarderColor = "TextBoarderColor"
         static let textColor = "TextColor"
         static let dropShadowColor = "ColorBlackTransparentLight"
+        static let placeholderColor = "PlaceholderTextColor"
     }
     
     enum Images {

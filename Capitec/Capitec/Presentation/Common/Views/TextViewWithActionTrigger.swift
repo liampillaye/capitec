@@ -1,5 +1,5 @@
 //
-//  TextInputView.swift
+//  TextInputViewWithAction.swift
 //  Capitec
 //
 //  Created by Liam Pillaye.
@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-
-struct TextInputView: View {
+struct TextViewWithActionTrigger: View {
     
     var title: String
     var placeholder: String
     @State private var editing: Bool = false
-    @State var tapGestureTrigger: Bool = false
     @Binding var text: String
     @Binding var error: String?
     var keyboardType: UIKeyboardType = .default
+    var tapGestureTriggerAction: () -> Void
         
     //MARK: BODY
     var body: some View {
@@ -27,19 +26,12 @@ struct TextInputView: View {
                 )
                 .bodySubtitleStyle()
             
-            TextField(
-                placeholder,
-                text: $text,
-                onEditingChanged: {
-                    editing = $0
-                    if $0 {
-                        error = nil
-                    }
-                }
-            )
-            .keyboardType(keyboardType)
-            .foregroundColor(Color(Constants.Colors.textColor))
-            .padding(.top, 4)
+            Text(placeholder)
+                .keyboardType(keyboardType)
+                .foregroundColor(Color(Constants.Colors.placeholderColor))
+                .padding(.top, 4)
+
+                
             
             Rectangle()
                 .foregroundColor(
@@ -61,7 +53,7 @@ struct TextInputView: View {
             }
         }//:VSTACK
         .onTapGesture {
-            tapGestureTrigger = true
+            tapGestureTriggerAction()
         }
         .padding()
     }//:BODY
@@ -69,11 +61,13 @@ struct TextInputView: View {
 
 //MARK: PREVIEW
 #Preview {
-    TextInputView(
+    TextViewWithActionTrigger(
         title: "What is your age?",
         placeholder: "Age",
         text: .constant(""),
         error: .constant(nil),
-        keyboardType: .numberPad)
+        keyboardType: .numberPad) {
+            //Do something
+        }
         .padding()
 }

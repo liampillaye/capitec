@@ -18,7 +18,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
     @State private var showFinancialInfoView: Bool = false
     @State private var showEmploymentStatusActionSheet: Bool = false
     @State private var employmentStatusOption: String? = nil
-
+    
     
     //MARK: BODY
     var body: some View {
@@ -34,22 +34,24 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
                     
                     
                     Group {
-                        //Requested Amount
+                        //Age
                         TextInputView(title: "Age",
                                       placeholder: "What is your age?",
                                       text: $age,
                                       error: $viewModel.age.error,
-                                      keyboardType: .numberPad) 
-                        
-                        //Loan Term
-                        TextInputView(title: "Employment Status",
-                                      placeholder: "What is your employment status?",
-                                      text: $employmentStatus,
-                                      error: $viewModel.employmentStatus.error,
                                       keyboardType: .numberPad)
                         
+                        //Employment Status
+                        TextViewWithActionTrigger(title: "Employment Status",
+                                                  placeholder: "What is your employment status?",
+                                                  text: $employmentStatus,
+                                                  error: $viewModel.employmentStatus.error,
+                                                  keyboardType: .numberPad) {
+                            print("Do Something HERE!")
+                        }
                         
-                        //Loan Purpose
+                        
+                        //Employment Duration
                         TextInputView(title: "Employment Duration",
                                       placeholder: "What is your employment duration?",
                                       text: $employmentDuration,
@@ -89,7 +91,7 @@ struct LoanEligibilitySimulatorPersonalInfoView: View {
         
         let store: ApplicationStore = ApplicationStore.instance
         let vm = LoanEligibilitySimulatorPersonalInfoViewModel(manager: MockLoanEligibilitySimulatorManager())
-
+        
         var body: some View {
             LoanEligibilitySimulatorPersonalInfoView(viewModel: vm)
                 .environmentObject(ApplicationStore.instance)
