@@ -77,10 +77,20 @@ struct AffordabilityAnalysisCard: View {
                     
                     Spacer()
                     
-                    Text(affordabilityScore)
-                        .font(.system(.caption))
-                        .foregroundColor(.black)
-                        .lineLimit(1)
+                    if affordabilityScore.lowercased() == "good" {
+                        Text(affordabilityScore)
+                            .font(.system(.caption))
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                            .lineLimit(1)
+                    } else {
+                        Text(affordabilityScore)
+                            .font(.system(.caption))
+                            .fontWeight(.bold)
+                            .foregroundColor(.red)
+                            .lineLimit(1)
+                    }
+                    
                 }//:HSTACK
                 
             }//:VSTACK

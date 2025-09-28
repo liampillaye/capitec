@@ -64,10 +64,20 @@ struct EligibilityResultCard: View {
                     
                     Spacer()
                     
-                    Text(riskCategory)
-                        .font(.system(.caption))
-                        .foregroundColor(.black)
-                        .lineLimit(1)
+                    if riskCategory.lowercased() == "low" {
+                        Text(riskCategory)
+                            .font(.system(.caption))
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                            .lineLimit(1)
+                    } else {
+                        Text(riskCategory)
+                            .font(.system(.caption))
+                            .fontWeight(.bold)
+                            .foregroundColor(.red)
+                            .lineLimit(1)
+                        
+                    }
                 }//:HSTACK
                 
                 HStack {
@@ -101,7 +111,7 @@ struct EligibilityResultCard: View {
         var body: some View {
             EligibilityResultCard(isEligible: true,
                                   approvalLikelihood: 85,
-                                  riskCategory: "low",
+                                  riskCategory: "high",
                                   decisionReason: "Strong income-to-expense ratio and manageable existing debt")
         }
     }
