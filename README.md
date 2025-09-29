@@ -5,6 +5,7 @@ Capitec is an **iOS Swift reference app** showcasing production-grade engineerin
 
 ## Demo
 
+![Demo](Demo/Capitec-Load-Eligiblity-Simulator-Demo.mp4)
 
 ---
 
