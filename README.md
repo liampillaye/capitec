@@ -41,7 +41,9 @@ open Capitec.xcodeproj
 ## Build & Run
 
 Select Capitec scheme
+
 Target a simulator (e.g. iPhone 15)
+
 Cmd+R to launch
 
 ---
@@ -82,6 +84,10 @@ Capitec/
 ## Contributing 
 
 Fork & branch ```(feature/my-feature)```
+
 Write tests, docs
+
 Submit PR with descriptive commits
+
+---
 
