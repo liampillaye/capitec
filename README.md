@@ -7,7 +7,7 @@ Capitec is an **iOS Swift reference app** showcasing production-grade engineerin
 
 Simulator Demo of the Loan Eligilibity Simulator 
 
-https://github.com/user-attachments/assets/950d8ddd-6646-4b66-9734-2f1422f8513b
+https://github.com/user-attachments/assets/4ad32347-aad5-4ad8-a25e-3ce46bbd04fb
 
 [Project Reference](Demo/Capitec-Load-Eligiblity-Simulator-Demo.mp4)
 
